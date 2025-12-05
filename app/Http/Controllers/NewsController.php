@@ -13,8 +13,10 @@ class NewsController extends Controller
         return view('front.news.index', compact('news'));
     }
 
-    public function show(News $news)
-    {
-        return view('front.news.show', compact('news'));
-    }
+   public function show($slug)
+{
+    $news = News::where('slug', $slug)->firstOrFail();
+    return view('front.news.show', compact('news'));
+}
+
 }
