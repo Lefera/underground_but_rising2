@@ -8,6 +8,7 @@
     <!-- CSS principal -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/new.css') }}">
 </head>
 <body>
 

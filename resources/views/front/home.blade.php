@@ -20,7 +20,8 @@
     <div class="artists-grid">
         @forelse($artists as $artist)
             <div class="artist-card">
-                <img src="{{ asset('storage/artists' . $artist->photo) }}" alt="{{ $artist->name }}">
+               <img src="{{ Storage::url('artists/' . $artist->photo) }}" alt="{{ $artist->name }}">
+
                 <h3>{{ $artist->name }}</h3>
                 <p>{{ $artist->genre->name ?? 'Genre non défini' }}</p>
                 <a href="{{ route('artists.show', $artist->slug) }}" class="btn-small">Voir le profil</a>
@@ -53,9 +54,10 @@
     <div class="news-grid">
         @forelse($news as $item)
             <div class="news-card">
-                <img src="{{ asset('storage/artists' . $item->photo) }}" alt="{{ $item->title }}">
+                <img src="{{ Storage::url('news/' . $item->image) }}" alt="{{ $item->title }}">
+
                 <h3>{{ $item->title }}</h3>
-                <a href="{{ route('news.show', $item->slug) }}" class="btn-small">Lire plus</a>
+               
             </div>
         @empty
             <p style="color:white;text-align:center;">Aucune actualité disponible pour le moment.</p>

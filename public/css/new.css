@@ -1,0 +1,135 @@
+/* PAGE ACTUALITÉ (SHOW) */
+.news-details {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 15px;
+    color: white;
+    font-family:poppins,sans-serif ;
+}
+
+.news-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.news-date {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 25px;
+    color: #000;
+}
+
+.news-main-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 25px;
+    border-radius: 10px;
+}
+
+.news-content {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: #000;
+}
+
+.news-actions {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 6px;
+    background: #000;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-back:hover {
+    background: var(--gold);
+}
+
+
+/*news index.blade.php*/
+
+.news-container {
+    width: 85%;
+    margin: auto;
+    padding: 40px 0;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.news-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.news-card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.news-card-text {
+    flex-grow: 1;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.btn-read-more {
+    display: inline-block;
+    text-align: center;
+    background: #d10024;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-read-more:hover {
+    background: #a4001b;
+}
+
+.pagination-wrapper {
+    margin-top: 30px;
+    justify-content: center;
+    display: flex;
+}
