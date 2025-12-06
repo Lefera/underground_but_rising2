@@ -25,6 +25,14 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        return view('front.home', compact('artists', 'genres', 'news'));
+         // Artistes mis en avant (featured)
+    $featuredArtists = Artist::featured()   // nécessite un scope dans Artist.php
+        ->orderBy('created_at', 'desc')
+        ->limit(4)
+        ->get();
+
+    return view('front.home', compact('artists', 'genres', 'news', 'featuredArtists'));
     }
+
+    
 }

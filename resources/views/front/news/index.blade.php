@@ -23,7 +23,7 @@
                     </p>
 
                     <a href="{{ route('news.show', $article->slug) }}" class="btn-read-more">
-                        Lire plus
+                        Lire plus 
                     </a>
                 </div>
             </div>

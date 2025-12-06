@@ -31,4 +31,10 @@ class Artist extends Model
 {
     return $this->belongsToMany(News::class, 'artist_news');
 }
+
+public function scopeFeatured($query)
+{
+    return $query->where('featured', true);
+}
+
 }

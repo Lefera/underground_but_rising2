@@ -14,23 +14,34 @@
 </section>
 
 <!-- ARTISTES À LA UNE -->
-<section class="section">
-    <h2 class="section-title">Artistes à la une</h2>
+@if(isset($featuredArtists) && $featuredArtists->count() > 0)
+<section class="section featured-artists">
+    <h2 class="section-title">Artistes à la Une</h2>
 
     <div class="artists-grid">
-        @forelse($artists as $artist)
+        @foreach($featuredArtists as $artist)
             <div class="artist-card">
-               <img src="{{ Storage::url('artists/' . $artist->photo) }}" alt="{{ $artist->name }}">
+                <img src="{{ Storage::url('artists/' . $artist->photo) }}" alt="{{ $artist->name }}">
 
                 <h3>{{ $artist->name }}</h3>
+
                 <p>{{ $artist->genre->name ?? 'Genre non défini' }}</p>
-                <a href="{{ route('artists.show', $artist->slug) }}" class="btn-small">Voir le profil</a>
+
+                <a href="{{ route('artists.show', $artist->slug) }}" class="btn-small">
+                    Voir le profil
+                </a>
             </div>
-        @empty
-            <p style="color:white;text-align:center;">Aucun artiste disponible pour le moment.</p>
-        @endforelse
+        @endforeach
     </div>
 </section>
+@else
+<section class="section featured-artists">
+    <h2 class="section-title">Artistes à la Une</h2>
+    <p class="empty-text">Aucun artiste mis en avant pour le moment.</p>
+</section>
+@endif
+
+
 
 <!-- GENRES -->
 <section class="section">
@@ -57,6 +68,11 @@
                 <img src="{{ Storage::url('news/' . $item->image) }}" alt="{{ $item->title }}">
 
                 <h3>{{ $item->title }}</h3>
+                  <div style="text-align:center; margin-top:30px;">
+        <a href="{{ route('news.index') }}" class="btn">
+            Voir toutes les actualités
+        </a>
+    </div>
                
             </div>
         @empty
