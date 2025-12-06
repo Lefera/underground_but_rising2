@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\News;
 
 class Artist extends Model
 {
@@ -25,4 +26,9 @@ class Artist extends Model
     {
         return 'slug';
     }
+
+    public function news()
+{
+    return $this->belongsToMany(News::class, 'artist_news');
+}
 }

@@ -12,10 +12,10 @@ class GenreSeeder extends Seeder
     {
         $genres = [
             'Rap',
-            'Trap',
             'Afro',
-            'RnB',
+            'Trap',
             'Reggae',
+            'RnB',
             'Dancehall',
             'Soul',
             'Fusion',

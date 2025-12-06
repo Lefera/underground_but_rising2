@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
      <link rel="stylesheet" href="{{ asset('css/new.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/news-show.css') }}">
 </head>
 <body>
 

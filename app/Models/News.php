@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Artist;
+use App\Models\NewsImage;
+
 
 class News extends Model
 {
@@ -13,4 +16,12 @@ class News extends Model
     'photo',   // IMPORTANT
 ];
 
+    public function artists()
+{
+    return $this->belongsToMany(Artist::class, 'artist_news');
+}
+public function images()
+{
+    return $this->hasMany(NewsImage::class);
+}
 }
