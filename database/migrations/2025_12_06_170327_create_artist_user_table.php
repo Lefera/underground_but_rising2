@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Empêche les doublons d'abonnement
-            $table->unique(['artist_id', 'user_id']);
+            $table->unique(['artist_id', 'user_id']);  // Empêche de s’abonner 2 fois
         });
     }
 

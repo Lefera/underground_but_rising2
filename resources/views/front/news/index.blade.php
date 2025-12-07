@@ -22,7 +22,7 @@
                         {{ Str::limit(strip_tags($article->content), 130) }}
                     </p>
 
-                    <a href="{{ route('news.show', $article->slug) }}" class="btn-read-more">
+                    <a href="{{ route('news.show', $article->slug) }}" class="btn-small">
                         Lire plus 
                     </a>
                 </div>

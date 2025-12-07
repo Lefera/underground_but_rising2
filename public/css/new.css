@@ -60,7 +60,7 @@
 .news-container {
     width: 85%;
     margin: auto;
-    padding: 40px 0;
+    padding: 100px 0;
 }
 
 .page-title {
@@ -114,20 +114,20 @@
     margin-bottom: 15px;
 }
 
-.btn-read-more {
-    display: inline-block;
-    text-align: center;
-    background: #d10024;
-    color: #fff;
-    padding: 10px 14px;
-    border-radius: 5px;
-    text-decoration: none;
+.btn-small{
+   padding: 6px 18px;  /* Taille réduite */
+    background: var(--gold);
+    color: var(--black);
+    border-radius: 6px;
     font-weight: 600;
-    transition: 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
 }
 
-.btn-read-more:hover {
-    background: #a4001b;
+.btn-small:hover {
+     background: var(--white);
+    color: var(--black);
 }
 
 .pagination-wrapper {

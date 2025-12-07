@@ -2,7 +2,7 @@
 .artists-list-page {
     width: 90%;
     max-width: 1200px;
-    margin: 100px auto 60px;
+    margin: 100px ;
 }
 
 /* TITRE DE PAGE */
@@ -18,10 +18,10 @@
 .page-title::after {
     content: "";
     position: absolute;
-    bottom: -10px;
+    bottom: -2px;
     left: 50%;
-    width: 200px;
-    height: 3px;
+    width: 250px;
+    height: 2px;
     background: var(--gold);
     transform: translateX(-50%);
     border-radius: 2px;
@@ -87,15 +87,13 @@
 .btn-subscribe,
 .btn-unsubscribe,
 .btn-small {
+    padding: 10px 24px;  /* Taille réduite */
+    background: var(--gold);
+    color: var(--black);
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
     display: inline-block;
-    width: 100%;
-    padding: 8px;
-    margin-top: 8px;
-    border-radius: 8px;
-    font-size: 14px;
-    text-align: center;
-    border: none;
-    cursor: pointer;
     transition: 0.3s;
 }
 

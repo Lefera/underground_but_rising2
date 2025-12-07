@@ -110,7 +110,7 @@ main {
     max-width: 900px;
     padding: 0 20px;
     color: var(--white);
-    margin: 0 auto; /* centrer le contenu */
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -126,16 +126,18 @@ main {
     margin-bottom: 25px;
 }
 
-/* Boutons */
+/* Bouton */
 .btn-small {
-    padding: 12px 26px;
+    padding: 6px 18px;  /* Taille réduite */
     background: var(--gold);
     color: var(--black);
     border-radius: 6px;
     font-weight: 600;
     text-decoration: none;
+    display: inline-block;
     transition: 0.3s;
 }
+
 
 .btn:hover {
     background: var(--white);

@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\RevelationController;
 
 // Accueil
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -30,7 +31,7 @@ Route::get('/artistes/{artist:slug}', [ArtistController::class, 'show'])->name('
 
 // Affichage des top-rising-stars
 Route::get('/revelations', [ArtistController::class, 'revelations'])
-    ->name('artists.revelations');
+    ->name('revelations');
 
 
 // Abonnement / Désabonnement

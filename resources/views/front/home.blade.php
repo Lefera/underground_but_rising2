@@ -13,6 +13,7 @@
     </div>
 </section>
 
+
 <!-- ARTISTES À LA UNE -->
 @if(isset($featuredArtists) && $featuredArtists->count() > 0)
 <section class="section featured-artists">
