@@ -3,7 +3,6 @@
 --------------------------------------------------- */
 :root {
     --gold: #d4af37;
-    --gold-light: #f5e7b2;
     --white: #ffffff;
     --black: #000000;
     --dark: #0d0d0d;
@@ -22,13 +21,13 @@ body {
     line-height: 1.6;
 }
 
-/* ---------------------------------------------------
-   GLOBAL UTILITIES
---------------------------------------------------- */
 main {
     padding-top: 80px;
 }
 
+/* ---------------------------------------------------
+   UTILITAIRES GÉNÉRAUX
+--------------------------------------------------- */
 .section {
     padding: 60px 8%;
 }
@@ -39,8 +38,8 @@ main {
     margin-bottom: 30px;
     color: var(--black);
     text-align: center;
-    border-bottom: 2px solid var(--gold);
     display: inline-block;
+    border-bottom: 2px solid var(--gold);
     padding-bottom: 5px;
 }
 
@@ -50,7 +49,6 @@ main {
 .navbar {
     width: 100%;
     background: var(--white);
-    color: var(--gold);
     padding: 18px 8%;
     display: flex;
     justify-content: space-between;
@@ -61,20 +59,10 @@ main {
     border-bottom: 1px solid var(--gold);
 }
 
-
-
 .logo-img {
-    
-    display: block;
     width: 215px;
     height: auto;
 }
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
 
 .navbar ul {
     list-style: none;
@@ -87,17 +75,18 @@ main {
     color: var(--gold);
     text-decoration: none;
     font-size: 15px;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .navbar ul li a:hover,
-.navbar button:hover {
+.navbar button:hover,
+.navbar ul li a.active {
     color: var(--black);
     transform: translateY(-2px);
 }
 
 /* ---------------------------------------------------
-   HERO SECTION (Accueil)
+   HERO
 --------------------------------------------------- */
 .hero {
     height: 90vh;
@@ -112,18 +101,17 @@ main {
 .hero::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
 }
 
 .hero-content {
     position: relative;
-    max-width: 700px;
+    max-width: 900px;
     padding: 0 20px;
     color: var(--white);
+    margin: 0 auto; /* centrer le contenu */
+    text-align: center;
 }
 
 .hero h1 {
@@ -131,31 +119,31 @@ main {
     font-weight: 800;
     color: var(--gold);
     margin-bottom: 10px;
-     white-space: nowrap;
 }
 
 .hero p {
     font-size: 18px;
     margin-bottom: 25px;
-    color: var(--white);
 }
 
-.btn {
+/* Boutons */
+.btn-small {
     padding: 12px 26px;
     background: var(--gold);
     color: var(--black);
-    text-decoration: none;
-    border-radius: 5px;
+    border-radius: 6px;
     font-weight: 600;
+    text-decoration: none;
     transition: 0.3s;
 }
 
 .btn:hover {
     background: var(--white);
+    color: var(--black);
 }
 
 /* ---------------------------------------------------
-   ARTISTES GRID
+   ARTISTES À LA UNE
 --------------------------------------------------- */
 .artists-grid {
     display: grid;
@@ -169,12 +157,12 @@ main {
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .artist-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
 }
 
 .artist-card img {
@@ -189,21 +177,23 @@ main {
     font-size: 20px;
 }
 
+/* Lien Voir Profil */
 .btn-small {
     display: inline-block;
     margin-top: 10px;
     padding: 6px 14px;
-    background: var(--black);
-    color: var(--white);
+    background: var(--gold);
+    color: var(--black);
+    border-radius: 4px;
     text-decoration: none;
     font-size: 14px;
-    border-radius: 4px;
+    font-weight: 600;
     transition: 0.3s;
 }
 
 .btn-small:hover {
-    background: var(--gold);
-    color: var(--black);
+    background: var(--black);
+    color: var(--white);
 }
 
 /* ---------------------------------------------------
@@ -216,13 +206,13 @@ main {
 }
 
 .genre-card {
-    padding: 15px;
     background: var(--white);
-    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 15px;
     text-align: center;
+    color: var(--black);
     border-radius: 6px;
     font-weight: 600;
-    border: 1px solid var(--gold);
     transition: 0.3s;
 }
 
@@ -232,7 +222,7 @@ main {
 }
 
 /* ---------------------------------------------------
-   NEWS GRID
+   NEWS
 --------------------------------------------------- */
 .news-grid {
     display: grid;
@@ -245,12 +235,12 @@ main {
     border: 1px solid var(--gold);
     border-radius: 10px;
     padding: 15px;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .news-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
 }
 
 .news-card img {
@@ -260,25 +250,10 @@ main {
     border-radius: 6px;
 }
 
-.news-card h3 {
-    margin-top: 12px;
-    font-size: 18px;
-}
-
-/* ---------------------------------------------------
-   CTA SECTION
---------------------------------------------------- */
-.cta {
-    padding: 70px 8%;
-    background: var(--black);
+/* CTA Voir toutes les actualités */
+.news-cta {
     text-align: center;
-    color: var(--white);
-}
-
-.cta h2 {
-    font-size: 30px;
-    margin-bottom: 15px;
-    color: var(--gold);
+    margin-top: 40px;
 }
 
 /* ---------------------------------------------------
@@ -289,60 +264,45 @@ footer {
     padding: 40px 0;
     text-align: center;
     border-top: 1px solid var(--gold);
-    color: var(--black);
 }
 
-/* Conteneur principal */
+/* Social + Liens */
 .footer-container {
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
 }
 
-/* Liens du menu en colonne */
 .footer-links {
     display: flex;
-    flex-direction: column;      /* en colonne */
+    flex-direction: column;
     gap: 12px;
     margin-bottom: 25px;
 }
 
-.footer-links a {
-    color: var(--gold);
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 15px;
-}
-
-.footer-links a:hover {
-    color: var(--black);
-}
-
-/* Liens sociaux en ligne */
-.footer-social {
-    display: flex;
-    justify-content: center;
-    gap: 25px;                   /* espacement horizontal */
-    margin-bottom: 25px;
-}
-
+.footer-links a,
 .footer-social a {
     color: var(--gold);
-    font-size: 15px;
     text-decoration: none;
-    transition: 0.3s;
+    font-size: 15px;
+    transition: 0.3s ease;
 }
 
+.footer-links a:hover,
 .footer-social a:hover {
     color: var(--black);
 }
 
-/* Copyright */
-.footer-copy {
-    font-size: 14px;
-    margin-top: 10px;
-    color: var(--black);
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 25px;
 }
 
+.footer-copy {
+    font-size: 14px;
+    color: var(--black);
+}
 
 /* ---------------------------------------------------
    RESPONSIVE
@@ -354,14 +314,6 @@ footer {
 
     .hero h1 {
         font-size: 38px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    .section {
-        padding: 40px 5%;
+        white-space: normal;
     }
 }
-

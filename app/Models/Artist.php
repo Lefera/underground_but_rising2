@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\News;
+use App\Models\User;
 
 class Artist extends Model
 {
@@ -15,26 +16,42 @@ class Artist extends Model
         'genre_id'
     ];
 
-    // Relation artiste → genre
     public function genre()
     {
         return $this->belongsTo(Genre::class);
     }
 
-    // Permet de récupérer un artiste via son slug dans l'URL
     public function getRouteKeyName()
     {
         return 'slug';
     }
 
     public function news()
-{
-    return $this->belongsToMany(News::class, 'artist_news');
-}
+    {
+        return $this->belongsToMany(News::class, 'artist_news');
+    }
 
-public function scopeFeatured($query)
-{
-    return $query->where('featured', true);
-}
+    // *** Correction ici ***
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', true);
+    }
 
+    public function tracks()
+    {
+        return $this->hasMany(Track::class);
+    }
+
+    // Followers via table pivot "artist_user"
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'artist_user')
+                    ->withTimestamps();
+    }
+
+    // Badge Rising Star si +100 abonnés
+    public function getIsRisingStarAttribute(): bool
+    {
+        return $this->followers()->count() >= 100;
+    }
 }

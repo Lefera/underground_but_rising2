@@ -9,7 +9,7 @@
     <div class="hero-content">
         <h1>Underground But Rising</h1>
         <p>Découvre et soutiens les artistes souterrains en pleine ascension.</p>
-        <a class="btn" href="{{ route('artists.index') }}">Découvrir les artistes</a>
+        <a class="btn-small" href="{{ route('artists.index') }}">Découvrir les artistes</a>
     </div>
 </section>
 
@@ -69,9 +69,7 @@
 
                 <h3>{{ $item->title }}</h3>
                   <div style="text-align:center; margin-top:30px;">
-        <a href="{{ route('news.index') }}" class="btn">
-            Voir toutes les actualités
-        </a>
+        <a href="{{ route('news.index') }}" class="btn-small"> Voir toutes les actualités</a>
     </div>
                
             </div>

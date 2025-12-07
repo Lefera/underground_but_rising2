@@ -24,9 +24,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Affichage des artistes (lecture uniquement)
+// Affichage des artistes
 Route::get('/artistes', [ArtistController::class, 'index'])->name('artists.index');
 Route::get('/artistes/{artist:slug}', [ArtistController::class, 'show'])->name('artists.show');
+
+// Affichage des top-rising-stars
+Route::get('/revelations', [ArtistController::class, 'revelations'])
+    ->name('artists.revelations');
+
+
+// Abonnement / Désabonnement
+Route::post('/artistes/{artist}/follow', [ArtistController::class, 'follow'])
+    ->middleware('auth')
+    ->name('artists.follow');
+
+Route::post('/artistes/{artist}/unfollow', [ArtistController::class, 'unfollow'])
+    ->middleware('auth')
+    ->name('artists.unfollow');
+
 
 // Genres
 Route::resource('genres', GenreController::class)->only(['index', 'show']);
@@ -34,7 +49,6 @@ Route::resource('genres', GenreController::class)->only(['index', 'show']);
 // Actualités
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
-
 
 // Contact
 Route::view('/contact', 'contact')->name('contact');

@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
      <link rel="stylesheet" href="{{ asset('css/new.css') }}">
      <link rel="stylesheet" href="{{ asset('css/news-show.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/artist.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/artistshow.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/revelation.css') }}">
 </head>
 <body>
 
@@ -24,9 +27,10 @@
         <ul>
             <li><a href="{{ route('home') }}">Accueil</a></li>
             <li><a href="{{ route('artists.index') }}">Artistes</a></li>
+            <li><a href="/revelations" class="active">Révélations</a></li>
             <li><a href="{{ route('news.index') }}">Actualités</a></li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
-
+           
             @auth
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li>
@@ -61,6 +65,7 @@
             <div class="footer-links">
                 <a href="{{ route('home') }}">Accueil</a>
                 <a href="{{ route('artists.index') }}">Artistes</a>
+                  <li><a href="/revelations" class="active">Révélations</a></li>
                 <a href="{{ route('news.index') }}">Actualités</a>
                 <a href="{{ route('contact') }}">Contact</a>
             </div>

@@ -95,3 +95,56 @@
 .btn-back:hover {
     background: #444;
 }
+
+/* Centrage Pagination */
+.pagination nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 40px 0;
+}
+
+/* UL FLEX */
+.pagination nav ul {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+/* Liens page */
+.pagination nav ul li a,
+.pagination nav ul li span {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+
+/* Page active */
+.pagination nav ul li span[aria-current="page"] {
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    border-color: #000;
+}
+
+/* Hover */
+.pagination nav ul li a:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* Liens désactivés */
+.pagination nav ul li span[aria-disabled="true"] {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.pagination nav > div {
+    display: none;
+}
+

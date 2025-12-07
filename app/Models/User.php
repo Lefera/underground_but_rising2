@@ -46,4 +46,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function followedArtists()
+{
+    return $this->belongsToMany(Artist::class, 'artist_user')
+                ->withTimestamps();
+}
+
 }

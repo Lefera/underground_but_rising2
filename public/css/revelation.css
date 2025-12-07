@@ -1,0 +1,53 @@
+.revelation-page {
+    width: 90%;
+    max-width: 1200px;
+    margin: 110px auto 60px;
+    text-align: center;
+}
+
+.subtitle {
+    margin-top: 10px;
+    color: #aaa;
+    font-size: 15px;
+}
+
+.badge-rising {
+    display: inline-block;
+    background: linear-gradient(90deg, #ffcc00, #ff8800);
+    color: #111;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.artist-card {
+    position: relative;
+    padding: 15px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s ease-in-out;
+}
+
+.artist-card:hover {
+    transform: translateY(-4px);
+    background: #222;
+}
+
+.btn-small {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 12px;
+    background: #ff8800;
+    border-radius: 6px;
+    color: #111;
+    font-size: 13px;
+}
+
+.followers-count {
+    font-size: 12px;
+    color: #ccc;
+    margin: 5px 0;
+}

@@ -8,53 +8,59 @@ use Illuminate\Support\Str;
 
 class ArtistController extends Controller
 {
-    /**
-     * Liste des artistes (pages publiques)
-     */
     public function index()
     {
-        $artists = Artist::all();
+        $artists = Artist::select('id', 'name', 'slug', 'photo', 'genre_id')
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
         return view('front.artists.index', compact('artists'));
     }
 
-    /**
-     * Affichage d'un artiste par slug (page publique)
-     */
-    public function show(Artist $artist)
+    public function show($slug)
     {
+        $artist = Artist::where('slug', $slug)
+            ->with(['genre', 'tracks'])
+            ->firstOrFail();
+
+        if(auth()->check()) {
+            auth()->user()->load('followedArtists');
+        }
+
         return view('front.artists.show', compact('artist'));
     }
 
-    /**
-     * Création d’un artiste via API uniquement (admin)
-     */
-    public function store(Request $request)
+   public function follow(Artist $artist)
+{
+    $user = auth()->user();
+
+    if (!$user->followedArtists()->where('artist_id', $artist->id)->exists()) {
+        $user->followedArtists()->attach($artist->id);
+    }
+
+    return response()->json([
+        'followers' => $artist->followers()->count()
+    ]);
+}
+
+
+    public function unfollow(Artist $artist)
     {
-        if (!auth()->check() || auth()->user()->role !== 'admin') {
-            return response()->json([
-                'message' => 'Accès refusé : vous n’êtes pas administrateur.'
-            ], 403);
-        }
+        auth()->user()->followedArtists()->detach($artist->id);
 
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'bio'  => 'nullable|string',
-            'photo' => 'nullable|image|max:2048',
-            'genre_id' => 'required|integer|exists:genres,id'
-        ]);
-
-        $validated['slug'] = Str::slug($validated['name']);
-
-        if ($request->hasFile('photo')) {
-        $photoPath = $request->file('photo')->store('artists', 'public');
-        $artist->photo = $photoPath;
+        return back();
     }
 
-        $artist = Artist::create($validated);
+    public function revelations()
+{
+    // On sélectionne uniquement les artistes avec + de 100 abonnés
+    $artists = Artist::withCount('followers')
+        ->having('followers_count', '>=', 100)
+        ->orderByDesc('followers_count')
+        ->take(10)
+        ->get();
 
-        return response()->json([
-            'message' => 'Artiste créé avec succès',
-            'artist'  => $artist
-        ], 201);
-    }
+    return view('front.artists.revelations', compact('artists'));
+}
+
 }
