@@ -17,7 +17,7 @@
     font-size: 0.9rem;
     opacity: 0.8;
     margin-bottom: 25px;
-    color: #000;
+    color: #0A0A0A;
 }
 
 .news-main-image {
@@ -31,7 +31,7 @@
     font-size: 1.05rem;
     line-height: 1.6;
     margin-bottom: 40px;
-    color: #000;
+    color: #0A0A0A;
 }
 
 .news-actions {
@@ -43,7 +43,7 @@
     display: inline-block;
     padding: 12px 22px;
     border-radius: 6px;
-    background: #000;
+    background: #0A0A0A;
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -68,7 +68,7 @@
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 30px;
-    color: #111;
+    color: #0A0A0A;
 }
 
 .news-grid {
@@ -103,7 +103,7 @@
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #111;
+    color: #0A0A0A;
 }
 
 .news-card-text {
@@ -117,7 +117,7 @@
 .btn-small{
    padding: 6px 18px;  /* Taille réduite */
     background: var(--gold);
-    color: var(--black);
+    color: #0A0A0A;
     border-radius: 6px;
     font-weight: 600;
     text-decoration: none;
@@ -127,7 +127,7 @@
 
 .btn-small:hover {
      background: var(--white);
-    color: var(--black);
+    color: #0A0A0A;
 }
 
 .pagination-wrapper {

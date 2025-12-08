@@ -32,7 +32,7 @@
                     <span class="rank">#{{ $loop->iteration }}</span>
 
                     {{-- Photo --}}
-                    <img src="{{ Storage::url($artist->photo) }}" alt="{{ $artist->name }}">
+                    <img src="{{ Storage::url('artists/' .$artist->photo) }}" alt="{{ $artist->name }}">
 
                     {{-- Nom --}}
                     <h3>{{ $artist->name }}</h3>

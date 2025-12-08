@@ -13,6 +13,11 @@
      <link rel="stylesheet" href="{{ asset('css/artist.css') }}">
     <link rel="stylesheet" href="{{ asset('css/artistshow.css') }}">
     <link rel="stylesheet" href="{{ asset('css/revelation.css') }}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admincontact.css') }}">
+<link rel="stylesheet" href="{{ asset('css/adminmessage.css') }}">
+
 </head>
 <body>
 
@@ -31,20 +36,19 @@
             <li><a href="{{ route('news.index') }}">Actualités</a></li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
            
-            @auth
-                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button style="background:none;border:none;color:white;cursor:pointer;">
-                            Déconnexion
-                        </button>
-                    </form>
-                </li>
-            @else
-                <li><a href="{{ route('login') }}">Connexion</a></li>
-                <li><a href="{{ route('register') }}">Inscription</a></li>
-            @endauth
+           @auth
+    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+
+    <li>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn-auth">Déconnexion</button></form>
+    </li>
+@else
+    <li><a href="{{ route('login') }}" class="btn-auth">Connexion</a></li>
+    <li><a href="{{ route('register') }}" class="btn-auth">Inscription</a></li>
+@endauth
+
         </ul>
     </nav>
 

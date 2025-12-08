@@ -4,8 +4,8 @@
 :root {
     --gold: #d4af37;
     --white: #ffffff;
-    --black: #000000;
-    --dark: #0d0d0d;
+    --black: #0A0A0A;
+    --dark: #0A0A0A;
 }
 
 * {
@@ -17,7 +17,7 @@
 body {
     font-family: "Poppins", sans-serif;
     background: var(--white);
-    color: var(--black);
+    color: #0A0A0A;
     line-height: 1.6;
 }
 
@@ -36,7 +36,7 @@ main {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 30px;
-    color: var(--black);
+    color: #0A0A0A;
     text-align: center;
     display: inline-block;
     border-bottom: 2px solid var(--gold);
@@ -62,6 +62,7 @@ main {
 .logo-img {
     width: 215px;
     height: auto;
+    margin: -25px 0;
 }
 
 .navbar ul {
@@ -81,10 +82,29 @@ main {
 .navbar ul li a:hover,
 .navbar button:hover,
 .navbar ul li a.active {
-    color: var(--black);
+    color: #0A0A0A;
     transform: translateY(-2px);
 }
 
+
+/* ===== BOUTON DECONNEXION (HEADER) ===== */
+.btn-auth {
+    background: #ffffff;
+    color: #0A0A0A;
+    padding: 7px 14px;
+    font-size: 14px;
+    border-radius: 25px;
+    border: 1px solid #0A0A0A;
+    transition: all 0.25s ease-in-out;
+    font-weight: 600;
+}
+
+.btn-auth:hover {
+    background: #ffffff;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: #0A0A0A;
+}
 /* ---------------------------------------------------
    HERO
 --------------------------------------------------- */
@@ -130,7 +150,7 @@ main {
 .btn-small {
     padding: 6px 18px;  /* Taille réduite */
     background: var(--gold);
-    color: var(--black);
+    color: #0A0A0A;
     border-radius: 6px;
     font-weight: 600;
     text-decoration: none;
@@ -141,7 +161,7 @@ main {
 
 .btn:hover {
     background: var(--white);
-    color: var(--black);
+    color: #0A0A0A;
 }
 
 /* ---------------------------------------------------
@@ -163,7 +183,7 @@ main {
 }
 
 .artist-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-1px);
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
 }
 
@@ -181,15 +201,13 @@ main {
 
 /* Lien Voir Profil */
 .btn-small {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 6px 14px;
+    padding: 10px 24px;  /* Taille réduite */
     background: var(--gold);
-    color: var(--black);
-    border-radius: 4px;
+    color: #0A0A0A;
+    border-radius: 6px;
+    font-weight: 100;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
+    display: inline-block;
     transition: 0.3s;
 }
 
@@ -212,7 +230,7 @@ main {
     border: 1px solid var(--gold);
     padding: 15px;
     text-align: center;
-    color: var(--black);
+    color: #0A0A0A;
     border-radius: 6px;
     font-weight: 600;
     transition: 0.3s;
@@ -220,7 +238,7 @@ main {
 
 .genre-card:hover {
     background: var(--gold);
-    color: var(--black);
+    color: #0A0A0A;
 }
 
 /* ---------------------------------------------------
@@ -291,7 +309,7 @@ footer {
 
 .footer-links a:hover,
 .footer-social a:hover {
-    color: var(--black);
+    color: #0A0A0A;
 }
 
 .footer-social {
@@ -303,7 +321,7 @@ footer {
 
 .footer-copy {
     font-size: 14px;
-    color: var(--black);
+    color: #0A0A0A;
 }
 
 /* ---------------------------------------------------
@@ -319,3 +337,4 @@ footer {
         white-space: normal;
     }
 }
+

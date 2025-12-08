@@ -1,0 +1,132 @@
+/* ADMIN PANEL */
+.admin-container {
+    max-width: 1100px;
+    margin: 100px auto 50px auto;
+    padding: 20px;
+    color: var(--white);
+}
+
+.admin-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--gold);
+}
+
+/* TABLEAU */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.admin-table thead {
+    background: #222;
+}
+
+.admin-table th, .admin-table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #333;
+    text-align: left;
+    font-size: 14px;
+}
+
+.admin-table th {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.admin-table tr:hover {
+    background: #1b1b1b;
+}
+
+/* ACTIONS */
+.admin-table .actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-view, .btn-delete, .btn-back {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+}
+
+/* Bouton Voir */
+.btn-view {
+    background: var(--gold);
+    color: #000;
+}
+.btn-view:hover {
+    background: #d4b046;
+}
+
+/* Bouton Supprimer */
+.btn-delete {
+    background: #b30000;
+    color: #fff;
+}
+.btn-delete:hover {
+    background: #e00000;
+}
+
+/* MESSAGE DE CONFIRMATION */
+.alert-success {
+    background: #0A0A0A;
+    color: #ffffff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+/* PAGINATION */
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination .page-link,
+.pagination span {
+    background: #222 !important;
+    color: #fff !important;
+    border: 1px solid #333 !important;
+}
+
+/* PAGE DETAILS */
+.message-details {
+    max-width: 700px;
+    margin: 100px auto;
+    padding: 25px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+}
+
+.message-details h2 {
+    font-size: 24px;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.message-details p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+    color: #fff;
+}
+
+.btn-back {
+    margin-top: 15px;
+    background-color: #0077ff;
+    color: #fff;
+}
+.btn-back:hover {
+    background-color: #005fd1;
+}

@@ -64,8 +64,8 @@
 
 
 {{-- Bouton retour --}}
-<div class="back-button-container">
-    <a href="{{ route('news.index') }}" class="btn-back">Retour aux actualités</a>
+<div class="btn-small-container">
+    <a href="{{ route('news.index') }}" class="btn-small-back">Retour aux actualités</a>
 </div>
 
 @endsection

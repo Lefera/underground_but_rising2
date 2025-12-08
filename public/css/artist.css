@@ -12,7 +12,7 @@
     font-size: 32px;
     font-weight: bold;
     position: relative;
-    color: #000;
+    color: #0A0A0A;
 }
 
 .page-title::after {
@@ -36,12 +36,12 @@
 
 /* CARD ARTISTE */
 .artist-card {
-    background: #fff !important; /* Noir profond */
+    background: #ffffff !important; /* Noir profond */
     padding: 18px;
     border-radius: 12px;
     text-align: center;
-    color: #000;
-    border: 1px solid #222;
+    color: #0A0A0A;
+    border: 1px solid #0A0A0A;
     transition: 0.25s;
 }
 
@@ -63,7 +63,7 @@
 .badge-rising {
     display: inline-block;
     background: var(--gold);
-    color: #000;
+    color: #0A0A0A;
     font-size: 12px;
     padding: 3px 8px;
     border-radius: 8px;
@@ -80,7 +80,7 @@
 
 /* GENRE */
 .artist-card p {
-    color: #000;
+    color: #0A0A0A;
 }
 
 /* BOUTONS ABONNEMENT + PROFIL */
@@ -89,22 +89,23 @@
 .btn-small {
     padding: 10px 24px;  /* Taille réduite */
     background: var(--gold);
-    color: var(--black);
+    color: #0A0A0A;
     border-radius: 6px;
-    font-weight: 600;
+    font-weight: 100;
     text-decoration: none;
     display: inline-block;
     transition: 0.3s;
+      margin-bottom: 10px; /* espace sous le bouton d'abonnement */
 }
 
 /* Bouton S'abonner */
 .btn-subscribe {
-    background: var(--gold);
-    color: #000;
-    font-weight: 600;
+    background: #0A0A0A;
+    color: #ffffff;
+    font-weight: 100;
 }
 .btn-subscribe:hover {
-    background: #e6b100;
+    background: var(--gold);
 }
 
 /* Bouton Voir le Profil */
@@ -123,7 +124,7 @@
 }
 
 .btn-small:hover {
-    background-color: var(--black); /* couleur au hover */
+    background-color:#0A0A0A; /* couleur au hover */
     color: var(--white);
     transform: translateY(-2px);
 }

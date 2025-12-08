@@ -23,7 +23,7 @@
     border-radius: 12px;
     text-align: center;
     position: relative;
-    border: 1px solid #222;
+    border: 1px solid #0A0A0A;
 }
 
 .artist-card.small {
@@ -45,7 +45,7 @@
     padding: 5px 8px;
     border-radius: 8px;
     font-weight: bold;
-    color: #111;
+    color: #0A0A0A;
 }
 
 .badge-rising {
@@ -65,19 +65,18 @@
 }
 
 .btn-small {
+    padding: 6px 18px;  /* Taille réduite */
+    background: var(--gold);
+    color: #0A0A0A;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
     display: inline-block;
-    margin-top: 10px;
-    font-size: 14px;
-    padding: 8px 14px;
-    border-radius: 8px;
-    background: #222;
-    border: 1px solid #333;
-    color: white;
-    cursor: pointer;
+    transition: 0.3s;
 }
 
 .btn-small:hover {
-    background: #333;
+    background: #0A0A0A;
 }
 
 .empty-text {
@@ -90,5 +89,5 @@
     margin: 50px 0;
     border: none;
     height: 1px;
-    background: #333;
+    background: #0A0A0A;
 }
