@@ -77,6 +77,11 @@
     font-weight: 500;
 }
 
+.social-link svg {
+    display: block;
+    color: #0077ff;
+}
+
 /* GRID MUSIQUE + VIDEOS */
 .media-grid {
     display: grid;

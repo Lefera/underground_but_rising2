@@ -16,7 +16,7 @@ class NewsController extends Controller
 
  public function show($slug)
 {
-    $news = News::where('slug', $slug)->with('artists')->firstOrFail();
+    $news = News::where('slug', $slug)->with('artists', 'images')->firstOrFail();
     return view('front.news.show', compact('news'));
 }
 

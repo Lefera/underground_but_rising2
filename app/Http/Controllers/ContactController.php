@@ -34,7 +34,10 @@ class ContactController extends Controller
         $message = Message::create($validated);
 
         // Envoi email ADMIN
-        Mail::to('admin@tonsite.com')->send(new ContactMail($message));
+        Mail::to('leferae@gmail.com')->send(new ContactMail($message));
+
+        // Pause 1 seconde avant le 2e email
+        sleep(1);
 
         // Email réponse automatique à l’utilisateur
         Mail::to($message->email)->send(new ContactReplyMail($message));

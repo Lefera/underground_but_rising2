@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class NewsImage extends Model
 {
-protected $fillable = ['news_id', 'path'];
+protected $fillable = ['news_id', 'file_name'];
 
     public function news()
     {

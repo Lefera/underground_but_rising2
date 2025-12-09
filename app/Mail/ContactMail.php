@@ -11,16 +11,26 @@ class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-     public $message;
+    public $data;
 
     public function __construct(Message $message)
     {
-        $this->message = $message;
+        $this->data = $message;
     }
+
     public function build()
     {
         return $this->subject('Nouveau message du formulaire')
                     ->view('emails.contact-admin')
-                    ->with(['message' => $this->message]);
+                    ->with([
+                        'data' => $this->data
+                    ])
+                    ->attach(
+                        storage_path('app/public/artists/LOGO.jpg'),
+                        [
+                            'as'   => 'logo.jpg',
+                            'mime' => 'image/jpeg',
+                        ]
+                    );
     }
 }

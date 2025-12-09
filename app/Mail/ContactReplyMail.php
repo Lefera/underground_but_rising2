@@ -11,16 +11,26 @@ class ContactReplyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $message;
+    public $data; // Le message stocké
 
     public function __construct(Message $message)
-{
-    $this->message = $message;
-}
-
-    public function build()
     {
-        return $this->subject('Merci pour votre message')
-                    ->view('emails.contact-reply');
+        $this->data = $message;
+    }
+
+   public function build()
+{
+    return $this->subject('Merci pour votre message')
+                ->view('emails.contact-reply')
+                ->with([
+                    'data' => $this->data,
+                ])
+                ->attach(
+                    storage_path('app/public/artists/LOGO.jpg'),
+                    [
+                        'as'   => 'logo.jpg',
+                        'mime' => 'image/jpeg',
+                    ]
+                );
     }
 }

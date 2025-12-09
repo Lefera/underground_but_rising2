@@ -6,6 +6,28 @@
     <h2 class="contact-title"><i class="fas fa-envelope"></i> Contact</h2>
     <p class="contact-subtitle">Une question ? Une suggestion ? Nous sommes à votre écoute.</p>
 
+
+
+        @if(session('success'))
+    <div class="alert alert-success" style="background: #d4af37; color: #fff; padding: 10px; margin-bottom: 15px; border-radius: 4px;">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if ($errors->any())
+    <div class="alert alert-danger" style="background: #c0392b; color: #fff; padding: 10px; margin-bottom: 15px; border-radius: 4px;">
+        <ul style="margin: 0; padding-left: 20px;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
+
+
+
     <form action="{{ route('contact.send') }}" method="POST" class="contact-form">
         @csrf
 

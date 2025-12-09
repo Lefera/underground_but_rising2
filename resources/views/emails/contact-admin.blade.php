@@ -6,19 +6,23 @@
 </head>
 <body style="font-family: Arial, sans-serif; font-size: 15px; color: #333;">
 
-    <h2>Nouveau message reçu depuis le site Underground But Rising</h2>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <img src="cid:logo.jpg" alt="Underground But Rising" style="width:130px;">
+    </div>
 
-    <p><strong>Nom :</strong> {{ $message['name'] }}</p>
-    <p><strong>Email :</strong> {{ $message['email'] }}</p>
+    <h2 style="background:#000; color:#fff; padding:10px;">
+        Nouveau message reçu depuis le site Underground But Rising
+    </h2>
 
-    @if(!empty($message['subject']))
-        <p><strong>Sujet :</strong> {{ $message['subject'] }}</p>
+    <p><strong>Nom :</strong> {{ $data->name }}</p>
+    <p><strong>Email :</strong> {{ $data->email }}</p>
+
+    @if(!empty($data->subject))
+        <p><strong>Sujet :</strong> {{ $data->subject }}</p>
     @endif
 
-    <br>
-
     <p><strong>Message :</strong></p>
-    <p>{!! nl2br(e($message['message'])) !!}</p>
+    <p>{!! nl2br(e($data->message)) !!}</p>
 
     <br><hr>
 
