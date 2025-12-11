@@ -1,0 +1,121 @@
+ .search-input {
+        flex: 1;
+        padding: 12px 12px;
+        border-radius: 25px 0 0 25px;
+        border: 1px solid #333;
+        background: #fff;
+        color: #111;
+        
+    }
+    .search-btn {
+        padding: 12px 12px;
+        border-radius: 0 25px  25px 0;
+        background: #111;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+    }
+   
+
+   /* ============================
+   ESPACEMENT SOUS LE HEADER
+   ============================ */
+.search-page {
+    padding-top: 70px; /* espace pour respirer */
+}
+
+/* ============================
+   TITRE PRINCIPAL
+   ============================ */
+.search-title {
+    color: #d4a017; /* doré */
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* ============================
+   MESSAGE "AUCUN ARTISTE"
+   ============================ */
+.no-result {
+    color: #111;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+/* ============================
+   GRILLE DES ARTISTES
+   ============================ */
+.artist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+/* ============================
+   CARTE ARTISTE
+   ============================ */
+.artist-card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: all .3s ease;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
+}
+
+/* Effet hover : glow doré */
+.artist-card:hover {
+    border-color: #d4a017;
+    box-shadow: 0px 0px 12px rgba(212,160,23,0.6);
+    transform: translateY(-4px) scale(1.03);
+}
+
+/* Image artiste */
+.artist-card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Nom artiste */
+.artist-card h3 {
+    color: #111;
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Genre musique */
+.artist-card p {
+    color: #999;
+    font-size: 14px;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+.pagination a,
+.pagination span {
+    color: #fff !important;
+    background: #222 !important;
+    border: 1px solid #444 !important;
+    padding: 8px 12px;
+    margin: 2px;
+    border-radius: 6px;
+}
+.pagination a:hover {
+    background: #d4a017 !important;
+    color: #111 !important;
+    border-color: #d4a017 !important;
+}

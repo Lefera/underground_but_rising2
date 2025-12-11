@@ -31,26 +31,31 @@
 }
 
 /*bouton se connecter pour s'abonner*/
-.btn-follow{
-    display: inline-block;
-    background: #0077ff;
-    color: #fff;
-    padding: 8px 18px;
-    margin-top: 12px; /* DESCEND LE BOUTON */
-    font-size: 14px;
-    border-radius: 15px;
+
+.btn-follow {
+    padding: 10px 35px;
+    background: #111;
+    color: white;
+    border-radius: 20px;
     text-decoration: none;
-    font-weight: 600;
-    transition: all 0.25s ease-in-out;
-    border: none;
-    cursor: pointer;
+    font-weight: bold;
 }
 
-.btn-follow:hover {
-    background: #005fcc;
-    transform: translateY(-2px);
-    box-shadow: 0px 4px 10px rgba(0,119,255,0.25);
+
+
+
+.btn-unfollow {
+  
+    padding: 10px 35px;
+    background: #111;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
 }
+
+
+
 
 /* COMPTEUR */
 .followers-count {
@@ -115,3 +120,73 @@
         text-align: center;
     }
 }
+
+
+
+.share-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+.share-btn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+.whatsapp { background: #25D366; }
+.facebook { background: #1877F2; }
+.twitter { background: #000; }
+.share-btn:hover { opacity: 0.8; }
+
+/* STYLE DU BOUTON MODIFICATION PHOTO ARTISTES */
+.btn-edit-photo {
+    padding: 8px 15px;
+    background: #ffffff;
+    color: black;
+    border: 1px solid #d4af37;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.btn-edit-photo:hover {
+    background: #d4af37;
+    color: #000;
+}
+
+/* BOUTON PARTAGER MUSIQUE DE L'ARTISTE*/
+.btn-share {
+    background: #ffffff;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 6px;
+    border: 1px solid #d4af37;
+    cursor: pointer;
+}
+.btn-share:hover {
+    background: #d4af37;
+    color: #000;
+}
+
+/*BOUTON MESSAGE*/
+
+.subscribe-box {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* espace entre les boutons */
+}
+
+
+
+.btn-message {
+    padding: 7px 25px;
+    background: #111;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+  
+}
+

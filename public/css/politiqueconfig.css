@@ -1,0 +1,65 @@
+/* ============= PAGES LEGALES (Mentions / Politique) ============= */
+.legal-page {
+    width: 100%;
+    padding: 80px 10%;
+    background: #0a0a0a; /* Noir profond */
+    color: #e5e5e5; /* Gris clair pour lisibilité */
+    line-height: 1.7;
+}
+
+.legal-page .page-title {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #d4a152; /* Doré */
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #d4a152;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.legal-page h2 {
+    font-size: 1.5rem;
+    margin-top: 35px;
+    color: #d4a152;
+}
+
+.legal-page p,
+.legal-page li {
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.legal-page .intro-text {
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 30px;
+    opacity: .85;
+}
+
+/* Listes */
+.legal-page ul {
+    margin-left: 25px;
+    list-style: square;
+}
+
+/* Liens */
+.legal-page a {
+    color: #d4a152;
+    text-decoration: underline;
+}
+
+.legal-page a:hover {
+    color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .legal-page {
+        padding: 50px 8%;
+    }
+    
+    .legal-page .page-title {
+        font-size: 2rem;
+    }
+}

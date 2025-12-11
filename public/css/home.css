@@ -110,7 +110,7 @@ main {
 --------------------------------------------------- */
 .hero {
     height: 90vh;
-    background: url("/storage/artists/Baggio2.jpg") center/cover no-repeat;
+    background: url("/storage/artists/BoyRe.jpeg") center/cover no-repeat;
     position: relative;
     display: flex;
     justify-content: center;
@@ -219,27 +219,64 @@ main {
 /* ---------------------------------------------------
    GENRES
 --------------------------------------------------- */
+
+.section-dark {
+    background: #0d0d0d;
+}
+
+.gold-title {
+    color: #d4af37;
+    text-transform: uppercase;
+}
+
 .genres-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
 }
 
 .genre-card {
-    background: var(--white);
-    border: 1px solid var(--gold);
-    padding: 15px;
-    text-align: center;
-    color: #0A0A0A;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: 0.3s;
+    position: relative;
+    display: block;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    background: linear-gradient(145deg, #1a1a1a, #0b0b0b);
+    border: 1px solid #2b2b2b;
+    transition: .4s;
+}
+
+.genre-card img, .genre-placeholder {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.genre-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #d4af37;
+    letter-spacing: .5px;
 }
 
 .genre-card:hover {
-    background: var(--gold);
-    color: #0A0A0A;
+    transform: translateY(-5px);
+    border-color: #d4af37;
 }
+
+.genre-name {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px #000;
+}
+
+
 
 /* ---------------------------------------------------
    NEWS
@@ -338,3 +375,9 @@ footer {
     }
 }
 
+.search-form {
+        display: flex;
+        margin: 15px auto;
+        max-width: 500px;
+    }
+   

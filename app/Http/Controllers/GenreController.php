@@ -15,7 +15,13 @@ public function index()
 
 
     public function show(Genre $genre)
-    {
-        return view('front.genres.show', compact('genre'));
-    }
+{
+    $artists = $genre->artists()
+        ->select('id','name','photo','slug')
+        ->orderBy('created_at','desc')
+        ->paginate(12);
+
+    return view('front.genres.show', compact('genre','artists'));
+}
+
 }

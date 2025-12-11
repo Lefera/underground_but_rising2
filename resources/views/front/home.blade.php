@@ -42,22 +42,40 @@
 </section>
 @endif
 
-
+ <!-- ========================================================
+         BARRE DE RECHERCHE (AJOUTÉE SOUS LA NAVBAR)
+         ======================================================== -->
+    <form action="{{ route('artists.search') }}" method="GET" class="search-form">
+        <input 
+            type="text" 
+            name="q" 
+            placeholder="Rechercher un artiste ou un genre..."
+            class="search-input"
+        >
+        <button type="submit" class="search-btn">Rechercher</button>
+    </form>
 
 <!-- GENRES -->
-<section class="section">
-    <h2 class="section-title">Genres musicaux</h2>
+
+<section class="section section-dark">
+    <h2 class="section-title gold-title">Genres musicaux</h2>
 
     <div class="genres-grid">
         @forelse($genres as $genre)
-            <div class="genre-card">
-                <p>{{ $genre->name }}</p>
-            </div>
+            <a href="{{ route('genres.show', $genre->slug) }}" class="genre-card">
+                @if($genre->image)
+                    <img src="{{ Storage::url('genres/'.$genre->image) }}" alt="{{ $genre->name }}">
+                @else
+                    <div class="genre-placeholder">{{ $genre->name }}</div>
+                @endif
+                <span class="genre-name">{{ $genre->name }}</span>
+            </a>
         @empty
-            <p style="color:white;text-align:center;">Aucun genre disponible.</p>
+            <p class="text-center">Aucun genre disponible.</p>
         @endforelse
     </div>
 </section>
+
 
 <!-- ACTUALITÉS -->
 <section class="section">

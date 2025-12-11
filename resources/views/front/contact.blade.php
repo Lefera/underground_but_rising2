@@ -24,10 +24,6 @@
     </div>
 @endif
 
-
-
-
-
     <form action="{{ route('contact.send') }}" method="POST" class="contact-form">
         @csrf
 

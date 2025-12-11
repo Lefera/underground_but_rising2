@@ -12,7 +12,7 @@ class Track extends Model
     protected $fillable = [
         'artist_id',
         'title',
-        'audio',
+        'audio_file',
         'youtube_link'
     ];
 

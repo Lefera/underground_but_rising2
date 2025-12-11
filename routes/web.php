@@ -11,6 +11,9 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RevelationController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\MessageAdminController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\TrackController;
+use App\Http\Controllers\ContactArtistController;
 
 // Accueil
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -47,7 +50,12 @@ Route::post('/artistes/{artist}/unfollow', [ArtistController::class, 'unfollow']
 
 
 // Genres
-Route::resource('genres', GenreController::class)->only(['index', 'show']);
+Route::resource('genres', GenreController::class)
+    ->only(['index', 'show'])
+    ->parameters([
+        'genres' => 'genre:slug'
+    ]);
+
 
 // Actualités
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
@@ -69,6 +77,31 @@ Route::get('/contacts-stat', [App\Http\Controllers\Admin\ContactAdminController:
 Route::get('/messages', [MessageAdminController::class, 'index'])->name('admin.messages.index');
     Route::get('/messages/{id}', [MessageAdminController::class, 'show'])->name('admin.messages.show');
     Route::delete('/messages/{id}', [MessageAdminController::class, 'destroy'])->name('admin.messages.destroy');
+
+
+    Route::view('/mentions-legales', 'front.mentions-legales')->name('mentions.legales');
+Route::view('/politique-confidentialite', 'front.politique-confidentialite')->name('politique.confidentialite');
+
+// Cette route renvoie vers la méthode search()
+// du ArtistController lorsqu'un utilisateur soumet la barre de recherche.
+Route::get('/recherche', [ArtistController::class, 'search'])->name('artists.search');
+
+
+Route::get('/artists/{artist}/tracks/create', [App\Http\Controllers\TrackController::class, 'create'])->name('tracks.create');
+Route::post('/artists/{artist}/tracks', [App\Http\Controllers\TrackController::class, 'store'])->name('tracks.store');
+
+
+// Mise à jour de la photo de profil de l’artiste
+Route::post('/artists/{artist}/update-photo', [ArtistController::class, 'updatePhoto'])
+    ->name('artists.updatePhoto');
+
+    // Route pour qu'un fans envoie un Message a l'artiste 
+    Route::get('/artists/{artist}/contact', [ContactArtistController::class, 'showForm'])
+    ->name('artists.contact.form');
+
+Route::post('/artists/{artist}/contact', [ContactArtistController::class, 'sendMessage'])
+    ->name('artists.contact.send');
+
 });
 
 require __DIR__.'/auth.php';
