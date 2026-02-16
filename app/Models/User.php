@@ -52,4 +52,14 @@ class User extends Authenticatable
                 ->withTimestamps();
 }
 
+public function artist()
+{
+    return $this->hasOne(\App\Models\Artist::class);
+}
+
+public function isAdmin()
+{
+    return $this->role === 'admin';
+}
+
 }

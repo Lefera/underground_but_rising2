@@ -1,137 +1,148 @@
-/* PAGE ACTUALITÉ (SHOW) */
-.news-details {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 0 15px;
-    color: white;
-    font-family:poppins,sans-serif ;
+/* =========================
+   PAGE NEWS INDEX
+========================= */
+
+.news-page{
+    max-width:1200px;
+    margin:auto;
+    padding:70px 20px;
+    color:#eee;
 }
 
-.news-title {
-    font-size: 2.2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
+.news-header{
+    text-align:center;
+    margin-bottom:50px;
 }
 
-.news-date {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    margin-bottom: 25px;
-    color: #0A0A0A;
+.news-header h1{
+    font-size:34px;
+    color:goldenrod;
 }
 
-.news-main-image {
-    width: 100%;
-    height: auto;
-    margin-bottom: 25px;
-    border-radius: 10px;
+.news-grid{
+    display:grid;
+    gap:30px;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 }
 
-.news-content {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    margin-bottom: 40px;
-    color: #0A0A0A;
+.news-card{
+    background:#111;
+    border-radius:14px;
+    overflow:hidden;
 }
 
-.news-actions {
-    text-align: center;
-    margin-top: 50px;
+.news-link{
+    text-decoration:none;
+    color:inherit;
+    display:block;
 }
 
-.btn-back {
-    display: inline-block;
-    padding: 12px 22px;
-    border-radius: 6px;
-    background: #0A0A0A;
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    transition: 0.3s;
+.news-image img{
+    width:100%;
+    height:210px;
+    object-fit:cover;
 }
 
-.btn-back:hover {
-    background: var(--gold);
+.news-body{
+    padding:20px;
+}
+
+.news-date{
+    font-size:13px;
+    opacity:.6;
+}
+
+.news-title{
+    margin:10px 0;
+    font-size:18px;
+    color:#fff;
+}
+
+.news-excerpt{
+    font-size:14px;
+    opacity:.8;
+}
+
+.news-read{
+    display:inline-block;
+    margin-top:10px;
+    color:goldenrod;
+    font-weight:600;
 }
 
 
-/*news index.blade.php*/
+/* =========================
+   ARTICLE SHOW
+========================= */
 
-.news-container {
-    width: 85%;
-    margin: auto;
-    padding: 100px 0;
+.news-hero{
+    position:relative;
+    height:420px;
+    overflow:hidden;
 }
 
-.page-title {
-    text-align: center;
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: #0A0A0A;
+.news-hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+.news-hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:40px;
+    color:#fff;
 }
 
-.news-card {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-    display: flex;
-    flex-direction: column;
+.news-hero-overlay h1{
+    font-size:32px;
+    color:goldenrod;
 }
 
-.news-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+.news-content{
+    max-width:900px;
+    margin:50px auto;
+    padding:0 20px;
+    line-height:1.8;
 }
 
-.news-card-body {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.news-related,
+.news-gallery{
+    max-width:1100px;
+    margin:70px auto;
+    padding:0 20px;
 }
 
-.news-card-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #0A0A0A;
+.gallery-grid{
+    display:grid;
+    gap:15px;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
 }
 
-.news-card-text {
-    flex-grow: 1;
-    color: #555;
-    font-size: 14px;
-    line-height: 1.4;
-    margin-bottom: 15px;
+.gallery-grid img{
+    width:100%;
+    border-radius:8px;
 }
 
-.btn-small{
-   padding: 6px 18px;  /* Taille réduite */
-    background: var(--gold);
-    color: #0A0A0A;
-    border-radius: 6px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    transition: 0.3s;
+.news-back{
+    text-align:center;
+    margin:60px 0;
 }
 
-.btn-small:hover {
-     background: var(--white);
-    color: #0A0A0A;
-}
 
-.pagination-wrapper {
-    margin-top: 30px;
-    justify-content: center;
-    display: flex;
+/* =========================
+   BOUTON GOLD
+========================= */
+
+.btn-gold{
+    background:goldenrod;
+    color:#111;
+    padding:10px 20px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:600;
 }

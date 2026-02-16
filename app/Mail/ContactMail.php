@@ -4,26 +4,33 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use App\Models\Message;
+use App\Models\Contact; // ✅ ON UTILISE Contact
 use Illuminate\Queue\SerializesModels;
 
 class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data;
+    // Les données du message de contact
+    public $contact;
 
-    public function __construct(Message $message)
+    /**
+     * Création du mail avec un Contact
+     */
+    public function __construct(Contact $contact)
     {
-        $this->data = $message;
+        $this->contact = $contact;
     }
 
+    /**
+     * Construction de l'email
+     */
     public function build()
     {
-        return $this->subject('Nouveau message du formulaire')
+        return $this->subject('Nouveau message du formulaire de contact')
                     ->view('emails.contact-admin')
                     ->with([
-                        'data' => $this->data
+                        'contact' => $this->contact
                     ])
                     ->attach(
                         storage_path('app/public/artists/LOGO.jpg'),

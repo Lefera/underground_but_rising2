@@ -10,15 +10,15 @@
         <img src="cid:logo.jpg" alt="Underground But Rising" style="width: 130px;">
     </div>
 
-    <p>Bonjour {{ $data->name}},</p>
+    <p>Bonjour {{ $contact->name}},</p>
 
     <p>
         Nous avons bien reçu votre message et nous vous en remercions.
         Notre équipe reviendra vers vous dans les plus brefs délais.
     </p>
 
-    @if(!empty($data->subject))
-        <p><strong>Sujet de votre message :</strong> {{ $data->subject }}</p>
+    @if(!empty($contact->subject))
+        <p><strong>Sujet de votre message :</strong> {{ $contact->subject }}</p>
     @endif
 
     <br>

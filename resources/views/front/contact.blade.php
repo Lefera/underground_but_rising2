@@ -1,59 +1,87 @@
 @extends('layouts.app')
 
+@section('title', 'Contact')
+
 @section('content')
-<section class="contact-section">
 
-    <h2 class="contact-title"><i class="fas fa-envelope"></i> Contact</h2>
-    <p class="contact-subtitle">Une question ? Une suggestion ? Nous sommes à votre écoute.</p>
+<section class="auth-full"
+    style="background-image: url('{{ asset('storage/artists/Tazo2.jpg') }}');">
 
+    {{-- COLONNE GAUCHE VISUEL --}}
+    <div class="auth-visual">
 
+        <div class="auth-visual-content">
+            <h1>Contact</h1>
+            <p>
+                Une question, une collaboration ou un projet ?
+                Écris-nous directement.
+            </p>
 
-        @if(session('success'))
-    <div class="alert alert-success" style="background: #d4af37; color: #fff; padding: 10px; margin-bottom: 15px; border-radius: 4px;">
-        {{ session('success') }}
+            <a href="{{ route('home') }}" class="visual-home">
+                ← Retour à l’accueil
+            </a>
+        </div>
+
     </div>
-@endif
 
-@if ($errors->any())
-    <div class="alert alert-danger" style="background: #c0392b; color: #fff; padding: 10px; margin-bottom: 15px; border-radius: 4px;">
-        <ul style="margin: 0; padding-left: 20px;">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+
+    {{-- COLONNE DROITE FORMULAIRE --}}
+    <div class="auth-panel">
+
+        <div class="auth-box contact-box">
+
+            {{-- LOGO --}}
+            <a href="{{ route('home') }}" class="auth-logo">
+                <img src="{{ asset('storage/artists/LOGOF6.jpg') }}" alt="Logo">
+            </a>
+
+            <h2 class="auth-title">Nous écrire</h2>
+
+            <form method="POST" action="{{ route('contact.send') }}" class="auth-form">
+                @csrf
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Votre nom"
+                    required
+                >
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Votre e-mail"
+                    required
+                >
+
+                <input
+                    type="text"
+                    name="subject"
+                    placeholder="Sujet"
+                    required
+                >
+
+                <textarea
+                    name="message"
+                    placeholder="Votre message..."
+                    rows="5"
+                    required
+                ></textarea>
+
+                <button type="submit" class="btn-gold">
+                    Envoyer le message
+                </button>
+
+            </form>
+
+            <p class="auth-footer">
+                Réponse sous 24–48h
+            </p>
+
+        </div>
+
     </div>
-@endif
-
-    <form action="{{ route('contact.send') }}" method="POST" class="contact-form">
-        @csrf
-
-        <!-- Anti-robots (honeypot) -->
-        <input type="text" name="website" class="honeypot">
-
-        <div class="input-group">
-            <i class="fas fa-user"></i>
-            <input type="text" name="name" placeholder="Votre nom" required>
-        </div>
-
-        <div class="input-group">
-            <i class="fas fa-at"></i>
-            <input type="email" name="email" placeholder="Votre email" required>
-        </div>
-
-        <div class="input-group">
-            <i class="fas fa-tag"></i>
-            <input type="text" name="subject" placeholder="Sujet du message" required>
-        </div>
-
-        <div class="input-group textarea">
-            <i class="fas fa-comment-dots"></i>
-            <textarea name="message" placeholder="Votre message..." required></textarea>
-        </div>
-
-        <button type="submit" class="btn-contact">
-            <i class="fas fa-paper-plane"></i> Envoyer
-        </button>
-    </form>
 
 </section>
+
 @endsection

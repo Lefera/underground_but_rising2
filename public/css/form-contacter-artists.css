@@ -1,6 +1,6 @@
 .contact-container {
     max-width: 600px;
-    margin: 40px auto;
+    margin: 125px auto;
     padding: 25px;
     background: #ffffff;
     border-radius: 12px;
@@ -11,14 +11,14 @@
     margin-bottom: 20px;
     font-size: 26px;
     font-weight: bold;
-    color: #222;
+    color: #d4af37;
     text-align: center;
 }
 
 .alert-success {
     padding: 12px 20px;
-    background: #d1f7d1;
-    color: #111;
+    background: #ffffff;
+    color: #ffffff;
     border-left: 4px solid #d4af37;
     border-radius: 6px;
     margin-bottom: 20px;
@@ -68,8 +68,6 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s ease;
+   
 }
 
-.btn-send:hover {
-    background: #111;
-}

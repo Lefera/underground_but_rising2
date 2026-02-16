@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Message;
+use App\Models\Contact; // ✅ Contact et non Message
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,26 +11,33 @@ class ContactReplyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data; // Le message stocké
+    // Données du message de contact
+    public $contact;
 
-    public function __construct(Message $message)
+    /**
+     * Création du mail de réponse automatique
+     */
+    public function __construct(Contact $contact)
     {
-        $this->data = $message;
+        $this->contact = $contact;
     }
 
-   public function build()
-{
-    return $this->subject('Merci pour votre message')
-                ->view('emails.contact-reply')
-                ->with([
-                    'data' => $this->data,
-                ])
-                ->attach(
-                    storage_path('app/public/artists/LOGO.jpg'),
-                    [
-                        'as'   => 'logo.jpg',
-                        'mime' => 'image/jpeg',
-                    ]
-                );
+    /**
+     * Construction de l'email
+     */
+    public function build()
+    {
+        return $this->subject('Merci pour votre message')
+                    ->view('emails.contact-reply')
+                    ->with([
+                        'contact' => $this->contact,
+                    ])
+                    ->attach(
+                        storage_path('app/public/artists/LOGO.jpg'),
+                        [
+                            'as'   => 'logo.jpg',
+                            'mime' => 'image/jpeg',
+                        ]
+                    );
     }
 }

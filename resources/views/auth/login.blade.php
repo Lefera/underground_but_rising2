@@ -1,47 +1,118 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.app')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+@section('title', 'Connexion')
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+@section('content')
+
+<section class="auth-full"
+    style="background-image: url('{{ asset('storage/artists/Tazo2.jpg') }}');">
+
+    {{-- COLONNE VISUELLE GAUCHE --}}
+    <div class="auth-visual">
+
+        <div class="auth-visual-content">
+            <h1>Underground<br>But Rising</h1>
+            <p>Connecte-toi pour découvrir et soutenir  les artistes underground.</p>
+
+            <a href="{{ route('home') }}" class="visual-home">
+                ← Retour à l’accueil
+            </a>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+    {{-- COLONNE FORMULAIRE DROITE --}}
+    <div class="auth-panel">
+
+        <div class="auth-box">
+
+            {{-- LOGO --}}
+            <a href="{{ route('home') }}" class="auth-logo">
+                <img src="{{ asset('storage/artists/LOGOF6.jpg') }}" alt="Logo">
+            </a>
+
+            <h2 class="auth-title">Connexion</h2>
+
+            <form method="POST" action="{{ route('login') }}" class="auth-form">
+                @csrf
+
+                {{-- EMAIL --}}
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Adresse e-mail"
+                    value="{{ old('email') }}"
+                    required
+                    autofocus
+                >
+
+               <div class="password-field">
+
+    <input
+        type="password"
+        name="password"
+        placeholder="Mot de passe"
+        required
+    >
+
+    <span class="toggle-password">
+        <i class="fa-solid fa-eye"></i>
+    </span>
+
+</div>
+
+
+                {{-- REMEMBER + FORGOT --}}
+                <div class="terms" style="justify-content: space-between; align-items:center;">
+                    <label style="display:flex; gap:6px; align-items:center;">
+                        <input type="checkbox" name="remember">
+                        <span>Se souvenir de moi</span>
+                    </label>
+
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}">
+                            Mot de passe oublié ?
+                        </a>
+                    @endif
+                </div>
+
+                {{-- BOUTON --}}
+                <button type="submit" class="btn-gold">
+                    Se connecter
+                </button>
+
+            </form>
+
+            <p class="auth-footer">
+                Pas encore de compte ?
+                <a href="{{ route('register') }}">Inscription</a>
+            </p>
+
         </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+    </div>
+        
+    <script>
+document.addEventListener('click', function (e) {
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+    const toggle = e.target.closest('.toggle-password');
+    if (!toggle) return;
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    const field = toggle.closest('.password-field');
+    const input = field.querySelector('input');
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        toggle.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+    } else {
+        input.type = 'password';
+        toggle.innerHTML = '<i class="fa-solid fa-eye"></i>';
+    }
+
+});
+</script>
+
+</section>
+
+@endsection

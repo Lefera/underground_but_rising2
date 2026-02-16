@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Message; // <-- Modèle Message
+use App\Models\Contact;
+
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
 use App\Mail\ContactReplyMail;
@@ -31,16 +32,17 @@ class ContactController extends Controller
         ]);
 
         // Sauvegarde en base
-        $message = Message::create($validated);
+      $contact = Contact::create($validated);
+
 
         // Envoi email ADMIN
-        Mail::to('leferae@gmail.com')->send(new ContactMail($message));
+        Mail::to('leferae@gmail.com')->send(new ContactMail($contact));
 
         // Pause 1 seconde avant le 2e email
         sleep(1);
 
         // Email réponse automatique à l’utilisateur
-        Mail::to($message->email)->send(new ContactReplyMail($message));
+        Mail::to($contact->email)->send(new ContactReplyMail($contact));
 
         return back()->with('success', 'Message envoyé avec succès ! Nous vous répondrons très bientôt.');
     }

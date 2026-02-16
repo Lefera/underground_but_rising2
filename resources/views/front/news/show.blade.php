@@ -1,71 +1,87 @@
+
+
 @extends('layouts.app')
 
 @section('title', $news->title)
 
 @section('content')
 
-<section class="news-details">
+<article class="news-article">
 
-    {{-- Image principale --}}
+    {{-- HERO COVER --}}
     @if($news->image)
-        <div class="news-cover">
+        <div class="news-hero">
             <img src="{{ Storage::url('news/'.$news->image) }}" alt="{{ $news->title }}">
+            <div class="news-hero-overlay">
+                <h1>{{ $news->title }}</h1>
+                <span>{{ $news->created_at?->format('d F Y') }}</span>
+            </div>
         </div>
     @endif
 
-    <div class="news-content">
-        <h1 class="news-title">{{ $news->title }}</h1>
 
-        <p class="news-date">
-           {{ $news->created_at ? $news->created_at->format('d/m/Y') : '' }}
-        </p>
+    {{-- CONTENU --}}
+    <div class="news-content">
 
         <div class="news-text">
             {!! nl2br(e($news->content)) !!}
         </div>
+
     </div>
 
-</section>
+</article>
 
 
-{{-- Artistes liés à l’actualité --}}
+
+{{-- ARTISTES LIÉS --}}
 @if($news->artists && $news->artists->count() > 0)
-<section class="news-artists">
-    <h2 class="section-title">Artistes Mentionnés</h2>
+<section class="news-related">
+
+    <h2 class="section-title">Artistes mentionnés</h2>
 
     <div class="artists-grid">
         @foreach($news->artists as $artist)
-            <div class="artist-card">
+
+            <a href="{{ route('artists.show', $artist->slug) }}" class="artist-card">
+
                 <img src="{{ Storage::url('artists/' . $artist->photo) }}" alt="{{ $artist->name }}">
-                <h3>{{ $artist->name }}</h3>
-                <p>{{ $artist->genre->name ?? 'Genre inconnu' }}</p>
-                <a href="{{ route('artists.show', $artist->slug) }}" class="btn-small">Voir le profil</a>
-            </div>
+
+                <div class="artist-info">
+                    <strong>{{ $artist->name }}</strong>
+                    <small>{{ $artist->genre->name ?? '—' }}</small>
+                </div>
+
+            </a>
+
         @endforeach
     </div>
+
 </section>
 @endif
 
 
-{{-- Images supplémentaires (table pivot : NewsImage) --}}
+
+{{-- GALERIE --}}
 @if($news->images && $news->images->count() > 0)
-<section class="news-images">
+<section class="news-gallery">
+
     <h2 class="section-title">Galerie</h2>
 
     <div class="gallery-grid">
         @foreach($news->images as $image)
-            <div class="gallery-item">
-                <img src="{{ Storage::url('news/' . $image->file_name) }}" alt="image-actu">
-            </div>
+            <img src="{{ Storage::url('news/' . $image->file_name) }}" alt="">
         @endforeach
     </div>
+
 </section>
 @endif
 
 
-{{-- Bouton retour --}}
-<div class="btn-small-container">
-    <a href="{{ route('news.index') }}" class="btn-small-back">Retour aux actualités</a>
+
+<div class="news-back">
+    <a href="{{ route('news.index') }}" class="btn-gold">
+        ← Retour aux actualités
+    </a>
 </div>
 
 @endsection

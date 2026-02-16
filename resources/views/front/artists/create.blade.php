@@ -3,53 +3,85 @@
 @section('title', 'Ajouter un artiste')
 
 @section('content')
-<div class="container mt-5">
-    <div class="card p-4 shadow-sm">
-        <h2 class="mb-4">Ajouter un artiste</h2>
 
-        {{-- Messages d’erreurs --}}
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
+<section class="artist-create">
+
+    <div class="artist-create__card">
+
+        <header class="artist-create__header">
+            <i class="fas fa-user-plus"></i>
+            <h2>Ajouter un artiste</h2>
+        </header>
+
+        @if ($errors->any())
+            <div class="form-alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li><i class="fas fa-circle-exclamation"></i> {{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
         @endif
 
-        <form method="POST" action="{{ route('artists.store') }}" enctype="multipart/form-data">
+        <form action="{{ route('artists.store') }}" method="POST" enctype="multipart/form-data" class="artist-form">
             @csrf
 
-            <div class="mb-3">
-                <label for="name" class="form-label">Nom de l'artiste*</label>
-                <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
+            <div class="form-grid">
+
+                <div class="form-field">
+                    <label>Nom de l'artiste</label>
+                    <input type="text" name="name" value="{{ old('name') }}" required>
+                </div>
+
+                <div class="form-field">
+                    <label>Genre musical</label>
+                    <input type="text" name="genre" value="{{ old('genre') }}">
+                </div>
+
+                <div class="form-field">
+                    <label>Pays / Ville</label>
+                    <input type="text" name="location" value="{{ old('location') }}">
+                </div>
+
+                <div class="form-field form-field--full">
+                    <label>Biographie</label>
+                    <textarea name="bio" rows="4">{{ old('bio') }}</textarea>
+                </div>
+
+                <div class="form-field form-field--full upload">
+                    <label>Photo</label>
+                    <input type="file" name="photo" accept="image/*" id="photoInput">
+                    <img id="preview" class="preview-img">
+                </div>
+
             </div>
 
-            <div class="mb-3">
-                <label for="bio" class="form-label">Biographie</label>
-                <textarea id="bio" name="bio" rows="4" class="form-control">{{ old('bio') }}</textarea>
+            <div class="form-actions">
+                <a href="{{ route('artists.index') }}" class="btn btn-light">Annuler</a>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
 
-            <div class="mb-3">
-                <label for="genre_id" class="form-label">Genre musical*</label>
-                <select id="genre_id" name="genre_id" class="form-select" required>
-                    <option value="">Sélectionner</option>
-                    @foreach($genres as $genre)
-                        <option value="{{ $genre->id }}">{{ $genre->name }}</option>
-                    @endforeach
-                </select>
-            </div>
 
-            <div class="mb-3">
-                <label for="photo" class="form-label">Photo</label>
-                <input type="file" id="photo" name="photo" class="form-control">
-            </div>
+            <a href="{{ route('admin.dashboard') }}" class="btn-back">
+        <i class="fas fa-arrow-left"></i>
+        Dashboard
+    </a>
 
-            <button type="submit" class="btn btn-primary w-100">
-                Enregistrer l’artiste
-            </button>
-        </form>
+    
     </div>
-</div>
+
+</section>
+
+
+<script>
+document.getElementById('photoInput').onchange = e => {
+    const file = e.target.files[0];
+    if(!file) return;
+
+    const preview = document.getElementById('preview');
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+};
+</script>
+
 @endsection

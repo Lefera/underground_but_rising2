@@ -1,192 +1,167 @@
-/* ESPACE AVEC LE HEADER */
-.artist-profile-container {
-    max-width: 1100px;
-    margin: 100px auto 50px auto;
-    padding: 20px;
-}
+/* ===== GLOBAL ===== */
 
-/* HEADER */
-.artist-header {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-.artist-photo {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-/* BADGE */
-.badge-rising {
-    background: #ff5b00;
-    color: #fff;
-    font-size: 12px;
-    padding: 4px 8px;
-    border-radius: 5px;
-    margin-left: 10px;
-}
-
-/*bouton se connecter pour s'abonner*/
-
-.btn-follow {
-    padding: 10px 35px;
-    background: #111;
-    color: white;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
+.artist-profile{
+    background:#0f0f0f;
+    color:#fff;
+    min-height:100vh;
+    font-family:system-ui;
 }
 
 
+/* ===== BANNIERE ===== */
 
+.artist-banner{
+    height:320px;
+    background-size:cover;
+    background-position:center;
+    position:relative;
+}
 
-.btn-unfollow {
-  
-    padding: 10px 35px;
-    background: #111;
-    color: white;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
+.banner-overlay{
+    position:absolute;
+    inset:0;
+
+    /* meilleur contraste */
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.2),
+        rgba(0,0,0,.8)
+    );
 }
 
 
+/* ===== HEADER ===== */
 
+.artist-header{
+    position:relative;
+    z-index:5;
 
-/* COMPTEUR */
-.followers-count {
-    color: #0077ff;
-    font-size: 14px;
-    margin-bottom: 6px;
+    display:flex;
+    gap:40px;
+    align-items:flex-end;
+
+    padding:25px 8%;
+    margin-top:-110px;
+
+    /* 🔥 lisibilité */
+    background:rgba(15,15,15,0.75);
+    backdrop-filter:blur(10px);
+    border-radius:16px;
 }
 
-/* SECTIONS */
-.artist-section {
-    margin-bottom: 40px;
-}
-
-.artist-section h2 {
-    font-size: 22px;
-    margin-bottom: 15px;
-}
-
-/* SOCIAL */
-.social-links a {
-    display: inline-block;
-    margin-right: 12px;
-    color: #0077ff;
-    font-weight: 500;
-}
-
-.social-link svg {
-    display: block;
-    color: #0077ff;
-}
-
-/* GRID MUSIQUE + VIDEOS */
-.media-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
-}
-
-.media-card {
-    background: #ffffff;
-    padding: 12px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-.media-title {
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-
-.video-frame {
-    width: 100%;
-    height: 160px;
-    border-radius: 10px;
-    margin-bottom: 8px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-    .artist-header {
-        flex-direction: column;
-        text-align: center;
-    }
+.artist-avatar{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #111;
 }
 
 
+/* ===== META ===== */
 
-.share-container {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-.share-btn {
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-}
-.whatsapp { background: #25D366; }
-.facebook { background: #1877F2; }
-.twitter { background: #000; }
-.share-btn:hover { opacity: 0.8; }
-
-/* STYLE DU BOUTON MODIFICATION PHOTO ARTISTES */
-.btn-edit-photo {
-    padding: 8px 15px;
-    background: #ffffff;
-    color: black;
-    border: 1px solid #d4af37;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: 0.3s;
+.artist-meta h1{
+    font-size:34px;
+    margin-bottom:12px;
 }
 
-.btn-edit-photo:hover {
-    background: #d4af37;
-    color: #000;
-}
-
-/* BOUTON PARTAGER MUSIQUE DE L'ARTISTE*/
-.btn-share {
-    background: #ffffff;
-    color: black;
-    padding: 8px 15px;
-    border-radius: 6px;
-    border: 1px solid #d4af37;
-    cursor: pointer;
-}
-.btn-share:hover {
-    background: #d4af37;
-    color: #000;
-}
-
-/*BOUTON MESSAGE*/
-
-.subscribe-box {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* espace entre les boutons */
+.artist-stats{
+    display:flex;
+    gap:12px;
+    margin-bottom:20px;
 }
 
 
+/* petits badges lisibles */
 
-.btn-message {
-    padding: 7px 25px;
-    background: #111;
-    color: white;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
-  
+.badge{
+    background:#1f1f1f;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    color:#eee;
+    border:1px solid #333;
 }
 
+
+/* ===== SECTIONS ===== */
+
+.artist-section{
+    padding:60px 8%;
+}
+
+.artist-section h2{
+    margin-bottom:20px;
+    color:goldenrod;
+}
+
+
+/* ===== MEDIA ===== */
+
+.media-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+    gap:20px;
+}
+
+.media-card{
+    background:#1b1b1b;
+    padding:15px;
+    border-radius:12px;
+}
+
+
+/* ===== BUTTONS ===== */
+
+.btn-gold{
+    background:goldenrod;
+    color:#000;
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn-gold:hover{
+    transform:scale(1.05);
+}
+
+.btn-gold-outline{
+    background:transparent;
+    border:1px solid goldenrod;
+    color:goldenrod;
+    padding:10px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.btn-gold-outline:hover{
+    background:goldenrod;
+    color:#000;
+}
+
+
+/* ===== BACK ===== */
+
+.back-center{
+    text-align:center;
+    padding:40px;
+}
+.comment-box{
+    background:#1b1b1b;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.reply-box{
+    margin-left:25px;
+    margin-top:8px;
+    padding:8px;
+    background:#222;
+    border-radius:8px;
+    font-size:14px;
+}

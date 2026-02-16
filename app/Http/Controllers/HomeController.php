@@ -10,29 +10,53 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Derniers artistes publiés (limite 6)
+        /*
+        |--------------------------------------------------------------------------
+        | Derniers artistes
+        |--------------------------------------------------------------------------
+        */
         $artists = Artist::select('id', 'name', 'slug', 'photo')
             ->latest()
             ->take(6)
             ->get();
 
-        // Tous les genres (nom + slug seulement)
+
+        /*
+        |--------------------------------------------------------------------------
+        | Genres
+        |--------------------------------------------------------------------------
+        */
         $genres = Genre::select('id', 'name', 'slug')->get();
 
-        // Dernières actualités (limite 3)
+
+        /*
+        |--------------------------------------------------------------------------
+        | News
+        |--------------------------------------------------------------------------
+        */
         $news = News::select('id', 'title', 'slug', 'image', 'created_at')
             ->latest()
             ->take(3)
             ->get();
 
-         // Artistes mis en avant (featured)
-    $featuredArtists = Artist::featured()   // nécessite un scope dans Artist.php
-        ->orderBy('created_at', 'desc')
-        ->limit(4)
-        ->get();
 
-    return view('front.home', compact('artists', 'genres', 'news', 'featuredArtists'));
+        /*
+        |--------------------------------------------------------------------------
+        | ⭐ Artistes en vedette (Rising)
+        | utilise le scope ->rising()
+        |--------------------------------------------------------------------------
+        */
+        $featuredArtists = Artist::rising()
+            ->orderByDesc('followers_count')
+            ->take(4)
+            ->get();
+
+
+        return view('front.home', compact(
+            'artists',
+            'genres',
+            'news',
+            'featuredArtists'
+        ));
     }
-
-    
 }

@@ -1,70 +1,73 @@
 @extends('layouts.app')
 
-@section('title', 'Liste des Artistes')
+@section('title', 'Artistes')
 
 @section('content')
 
-<section class="artists-list-page">
 
-    <h1 class="page-title">Tous les artistes</h1>
+
+<section class="artists-page">
+
+    <header class="artists-header">
+        <h1 class="artists-title">Artistes</h1>
+        <p class="artists-sub">
+            Découvrez les talents présents sur Underground But Rising
+        </p>
+    </header>
+
 
     <div class="artists-grid">
 
         @forelse($artists as $artist)
+
             <div class="artist-card">
 
                 {{-- PHOTO --}}
-                <img src="{{ Storage::url('artists/'.$artist->photo) }}" alt="{{ $artist->name }}">
+                <img
+                    class="artist-img"
+                    src="{{ $artist->photo
+                        ? Storage::url('artists/'.$artist->photo)
+                        : asset('images/avatar.png') }}"
+                    alt="{{ $artist->name }}"
+                >
 
-                {{-- NOM --}}
-                <h3>{{ $artist->name }}</h3>
+                {{-- INFOS --}}
+                <div class="artist-info">
 
-                {{-- BADGE Rising Star si +100 abonnés --}}
-                @if($artist->followers()->count() >= 100)
-                    <span class="badge-rising">Rising Star</span>
-                @endif
+                    <strong class="artist-name">
+                        {{ $artist->name }}
+                    </strong>
 
-                {{-- Compteur d'abonnés --}}
-                <p class="followers-count">
-                    {{ $artist->followers()->count() }} abonnés
-                </p>
+                    <small class="artist-genre">
+                        {{ $artist->genre->name ?? '—' }}
+                    </small>
 
-                {{-- GENRE --}}
-                <p>{{ $artist->genre->name ?? 'Genre non défini' }}</p>
+                    <span class="artist-followers">
+                        {{ $artist->followers_count }} abonnés
+                    </span>
 
-                {{-- ABONNEMENT --}}
-                @auth
-                    @php
-                        $isFollowing = auth()->user()->followedArtists->contains($artist->id);
-                    @endphp
+                    {{-- BOUTON VOIR PROFIL --}}
+                    <a href="{{ route('artists.show', $artist) }}"
+                       class="btn-view">
+                        👁 Voir le profil
+                    </a>
 
-                    @if(!$isFollowing)
-                        <form action="{{ route('artists.follow', $artist) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn-subscribe">S’abonner</button>
-                        </form>
-                    @else
-                        <form action="{{ route('artists.unfollow', $artist) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn-unsubscribe">Se désabonner</button>
-                        </form>
-                    @endif
-                @endauth
-
-                {{-- BOUTON PROFIL --}}
-                <a href="{{ route('artists.show', $artist->slug) }}" class="btn-small">
-                    Voir le profil
-                </a>
+                </div>
 
             </div>
+
         @empty
-            <p class="empty-text">Aucun artiste disponible pour le moment.</p>
+            <p class="artists-empty">Aucun artiste pour le moment.</p>
         @endforelse
+
     </div>
 
-    {{-- PAGINATION --}}
-    <div class="pagination-container">
-        {{ $artists->links() }}
+
+    {{-- BOUTON RETOUR ACCUEIL --}}
+    <div class="artists-back">
+        <a href="{{ route('home') }}" class="btn-back">
+            ← Retour à l’accueil
+        </a>
     </div>
 
 </section>

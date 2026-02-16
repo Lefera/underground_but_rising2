@@ -1,37 +1,71 @@
 @extends('layouts.app')
 
-@section('title', 'Actualités récentes')
+@section('title', 'Actualités')
 
 @section('content')
-<div class="news-container">
-    <h1 class="page-title">Actualités récentes</h1>
+
+<section class="news-page">
+
+    <header class="news-header">
+        <h1>Actualités</h1>
+        <p>Les dernières nouvelles de la scène underground</p>
+    </header>
+
 
     <div class="news-grid">
-        @foreach($news as $article)
-            <div class="news-card">
-                @if($article->image)
-                    <img src="{{ asset('storage/news/' . $article->image) }}" alt="{{ $article->title }}">
-                @else
-                    <img src="{{ asset('images/default-news.jpg') }}" alt="Actualité">
-                @endif
 
-                <div class="news-card-body">
-                    <h2 class="news-card-title">{{ $article->title }}</h2>
+        @forelse ($news as $article)
 
-                    <p class="news-card-text">
-                        {{ Str::limit(strip_tags($article->content), 130) }}
-                    </p>
+            <article class="news-card">
 
-                    <a href="{{ route('news.show', $article->slug) }}" class="btn-small">
-                        Lire plus 
-                    </a>
-                </div>
-            </div>
-        @endforeach
+                <a href="{{ route('news.show', $article->slug) }}" class="news-link">
+
+                    <div class="news-image">
+                        <img
+                            src="{{ $article->image
+                                ? asset('storage/news/' . $article->image)
+                                : asset('images/default-news.jpg') }}"
+                            alt="{{ $article->title }}"
+                        >
+                    </div>
+
+                    <div class="news-body">
+
+                        <span class="news-date">
+                            {{ $article->created_at?->format('d M Y') }}
+                        </span>
+
+                        <h2 class="news-title">
+                            {{ $article->title }}
+                        </h2>
+
+                        <p class="news-excerpt">
+                            {{ Str::limit(strip_tags($article->content), 120) }}
+                        </p>
+
+                        <span class="news-read">
+                            Lire l’article →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+        @empty
+            <p class="news-empty">Aucune actualité pour le moment.</p>
+        @endforelse
+
     </div>
 
-    <div class="pagination-wrapper">
-        {{ $news->links() }}
+
+    <div class="news-back">
+        <a href="{{ route('home') }}" class="btn-gold">
+            ← Retour à l’accueil
+        </a>
     </div>
-</div>
+
+</section>
+
 @endsection

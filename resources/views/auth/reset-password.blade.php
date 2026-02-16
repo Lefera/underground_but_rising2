@@ -1,39 +1,107 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
+@extends('layouts.app')
 
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+@section('title', 'Réinitialisation du mot de passe')
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+@section('content')
+
+<section class="auth-full"
+    style="background-image: url('{{ asset('storage/artists/Tazo2.jpg') }}');">
+
+    {{-- COLONNE GAUCHE --}}
+    <div class="auth-visual">
+        <div class="auth-visual-content">
+            <h1>Underground<br>But Rising</h1>
+            <p>Réinitialise ton accès et continue l’aventure.</p>
+
+            <a href="{{ route('home') }}" class="visual-home">
+                ← Retour à l’accueil
+            </a>
         </div>
+    </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+    {{-- COLONNE DROITE --}}
+    <div class="auth-panel">
+        <div class="auth-box fade-in">
+
+            {{-- LOGO --}}
+            <a href="{{ route('home') }}" class="auth-logo">
+                <img src="{{ asset('storage/artists/LOGOF6.jpg') }}" alt="Logo">
+            </a>
+
+            <h2 class="auth-title">Nouveau mot de passe</h2>
+
+            <form method="POST" action="{{ route('password.store') }}" class="auth-form">
+                @csrf
+
+                {{-- TOKEN --}}
+                <input type="hidden" name="token" value="{{ request()->route('token') }}">
+
+                {{-- EMAIL --}}
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Adresse e-mail"
+                    value="{{ old('email', request('email')) }}"
+                    required
+                >
+
+                {{-- MOT DE PASSE --}}
+                <div class="password-field">
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Nouveau mot de passe"
+                        required
+                    >
+                    <span class="toggle-password">
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+                </div>
+
+                {{-- CONFIRMATION --}}
+                <div class="password-field">
+                    <input
+                        type="password"
+                        name="password_confirmation"
+                        placeholder="Confirmer le mot de passe"
+                        required
+                    >
+                    <span class="toggle-password">
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+                </div>
+
+                <button type="submit" class="btn-gold">
+                    Réinitialiser
+                </button>
+            </form>
+
+            <p class="auth-footer">
+                Mot de passe retrouvé ?
+                <a href="{{ route('login') }}">Connexion</a>
+            </p>
+
         </div>
+    </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+</section>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
+{{-- SCRIPT OEIL --}}
+<script>
+document.querySelectorAll('.toggle-password').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const input = btn.previousElementSibling;
+        const icon = btn.querySelector('i');
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+    });
+});
+</script>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+@endsection

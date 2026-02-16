@@ -1,24 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="form-container">
 
-    <h1>Ajouter un Track à {{ $artist->name }}</h1>
+<div class="container">
+    <h2>Ajouter une œuvre pour {{ $artist->name }}</h2>
 
-    <form action="{{ route('tracks.store', $artist->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('tracks.store', $artist) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <label>Titre du track</label>
-        <input type="text" name="title" required>
+        <div>
+            <label>Titre</label>
+            <input type="text" name="title" required>
+        </div>
 
-        <label>Lien YouTube (optionnel)</label>
-        <input type="text" name="youtube_link">
+        <div>
+            <label>Lien YouTube (optionnel)</label>
+            <input type="text" name="youtube_link">
+        </div>
 
-        <label>Fichier audio (MP3/WAV/OGG)</label>
-        <input type="file" name="audio_file" accept="audio/*">
+        <div>
+            <label>Fichier audio (mp3, wav…)</label>
+            <input type="file" name="audio_file">
+        </div>
 
-        <button type="submit">Ajouter</button>
+        <button type="submit">Enregistrer</button>
     </form>
-
 </div>
+
 @endsection

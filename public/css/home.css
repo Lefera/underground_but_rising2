@@ -1,383 +1,554 @@
-/* ---------------------------------------------------
-   VARIABLES & SETUP
---------------------------------------------------- */
-:root {
-    --gold: #d4af37;
-    --white: #ffffff;
-    --black: #0A0A0A;
-    --dark: #0A0A0A;
+
+
+/* ==================================================
+   HOME – HERO
+   ================================================== */
+
+/* =============================
+   HERO SLIDER
+============================= */
+
+.hero-slider{
+    position:relative;
+    height:90vh;
+    min-height:520px;
+    overflow:hidden;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+/* IMAGES */
+.hero-slides{
+    position:absolute;
+    inset:0;
 }
 
-body {
-    font-family: "Poppins", sans-serif;
-    background: var(--white);
-    color: #0A0A0A;
-    line-height: 1.6;
+.hero-slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    opacity:0;
+    transition:opacity 1.2s ease-in-out;
 }
 
-main {
-    padding-top: 80px;
+.hero-slide.active{
+    opacity:1;
 }
 
-/* ---------------------------------------------------
-   UTILITAIRES GÉNÉRAUX
---------------------------------------------------- */
-.section {
-    padding: 60px 8%;
+
+/* OVERLAY */
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.6),
+        rgba(0,0,0,.85)
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
 }
 
-.section-title {
+
+/* TEXTE */
+.hero-content{
+    color:#fff;
+    max-width:700px;
+    padding:20px;
+
+    animation:fadeInHero 1.2s ease;
+}
+
+.hero-content h1{
+    font-size:42px;
+    color:goldenrod;
+    margin-bottom:20px;
+    letter-spacing:2px;
+}
+
+.hero-content p{
+    opacity:.85;
+    margin-bottom:25px;
+    font-size:18px;
+}
+
+
+/* ANIMATION */
+@keyframes fadeInHero{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =============================
+   FLÈCHES HERO
+============================= */
+
+.hero-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+
+    width:48px;
+    height:48px;
+
+    border:none;
+    border-radius:50%;
+
+    background:rgba(0,0,0,.55);
+    color:goldenrod;
+
+    font-size:28px;
+    font-weight:300;
+
+    cursor:pointer;
+    z-index:10;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:all .25s ease;
+}
+
+.hero-arrow:hover{
+    background:rgba(0,0,0,.8);
+}
+
+.hero-arrow.prev{
+    left:25px;
+}
+
+.hero-arrow.next{
+    right:25px;
+}
+
+/* Mobile : flèches plus petites */
+@media(max-width:768px){
+    .hero-arrow{
+        width:40px;
+        height:40px;
+        font-size:22px;
+    }
+}
+
+/* ==================================================
+   HOME – ARTISTES À LA UNE
+   ================================================== */
+
+.home-featured {
+    padding: 70px 8%;
+    background: #f1eeee;
+}
+
+.home-featured-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.home-featured-header h2 {
     font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 30px;
-    color: #0A0A0A;
-    text-align: center;
-    display: inline-block;
-    border-bottom: 2px solid var(--gold);
-    padding-bottom: 5px;
-}
-
-/* ---------------------------------------------------
-   NAVBAR
---------------------------------------------------- */
-.navbar {
-    width: 100%;
-    background: var(--white);
-    padding: 18px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid var(--gold);
-}
-
-.logo-img {
-    width: 215px;
-    height: auto;
-    margin: -25px 0;
-}
-
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-}
-
-.navbar ul li a,
-.navbar button {
-    color: var(--gold);
-    text-decoration: none;
-    font-size: 15px;
-    transition: 0.3s ease;
-}
-
-.navbar ul li a:hover,
-.navbar button:hover,
-.navbar ul li a.active {
-    color: #0A0A0A;
-    transform: translateY(-2px);
-}
-
-
-/* ===== BOUTON DECONNEXION (HEADER) ===== */
-.btn-auth {
-    background: #ffffff;
-    color: #0A0A0A;
-    padding: 7px 14px;
-    font-size: 14px;
-    border-radius: 25px;
-    border: 1px solid #0A0A0A;
-    transition: all 0.25s ease-in-out;
-    font-weight: 600;
-}
-
-.btn-auth:hover {
-    background: #ffffff;
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: #0A0A0A;
-}
-/* ---------------------------------------------------
-   HERO
---------------------------------------------------- */
-.hero {
-    height: 90vh;
-    background: url("/storage/artists/BoyRe.jpeg") center/cover no-repeat;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-}
-
-.hero-content {
-    position: relative;
-    max-width: 900px;
-    padding: 0 20px;
-    color: var(--white);
-    margin: 0 auto;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 52px;
     font-weight: 800;
-    color: var(--gold);
+    text-transform: uppercase;
+    color: #d4af37;
+    margin-bottom: 8px;
+}
+
+.home-featured-header p {
+    font-size: 15px;
+    color: #cfcfcf;
+    opacity: 0.9;
+}
+
+/* GRID */
+.home-featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+/* CARD */
+.home-featured-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #111;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #1f1f1f;
+    transition: border 0.25s ease, transform 0.25s ease;
+}
+
+/* Hover très discret */
+.home-featured-card:hover {
+    border-color: #d4af37;
+    transform: translateY(-2px);
+}
+
+/* IMAGE */
+.home-featured-image {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+}
+
+.home-featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* INFOS */
+.home-featured-info {
+    padding: 16px;
+    text-align: left;
+}
+
+.home-featured-info .artist-name {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.home-featured-info .artist-genre {
+    display: block;
+    font-size: 13px;
+    color: #b5b5b5;
     margin-bottom: 10px;
 }
 
-.hero p {
-    font-size: 18px;
-    margin-bottom: 25px;
-}
-
-/* Bouton */
-.btn-small {
-    padding: 6px 18px;  /* Taille réduite */
-    background: var(--gold);
-    color: #0A0A0A;
-    border-radius: 6px;
+.home-featured-info .artist-cta {
+    font-size: 13px;
     font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    transition: 0.3s;
+    color: #d4af37;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .home-featured {
+        padding: 60px 6%;
+    }
+
+    .home-featured-image {
+        height: 200px;
+    }
 }
 
 
-.btn:hover {
-    background: var(--white);
-    color: #0A0A0A;
+/* ==================================================
+   HOME – SEARCH BAR (UBR)
+   ================================================== */
+
+.home-search {
+    padding: 70px 8%;
+    background: #0A0A0A;
+    border-top: 1px solid #1f1f1f;
+   
 }
 
-/* ---------------------------------------------------
-   ARTISTES À LA UNE
---------------------------------------------------- */
-.artists-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 25px;
-}
-
-.artist-card {
-    background: var(--white);
-    border: 1px solid var(--gold);
-    border-radius: 10px;
-    padding: 20px;
+.home-search-inner {
+    max-width: 700px;
+    margin: 0 auto;
     text-align: center;
-    transition: 0.3s ease;
 }
 
-.artist-card:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
-}
-
-.artist-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.artist-card h3 {
-    margin: 12px 0 5px;
-    font-size: 20px;
-}
-
-/* Lien Voir Profil */
-.btn-small {
-    padding: 10px 24px;  /* Taille réduite */
-    background: var(--gold);
-    color: #0A0A0A;
-    border-radius: 6px;
-    font-weight: 100;
-    text-decoration: none;
-    display: inline-block;
-    transition: 0.3s;
-}
-
-.btn-small:hover {
-    background: var(--black);
-    color: var(--white);
-}
-
-/* ---------------------------------------------------
-   GENRES
---------------------------------------------------- */
-
-.section-dark {
-    background: #0d0d0d;
-}
-
-.gold-title {
-    color: #d4af37;
+.home-search-title {
+    font-size: 28px;
+    font-weight: 800;
     text-transform: uppercase;
-}
-
-.genres-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-}
-
-.genre-card {
-    position: relative;
-    display: block;
-    border-radius: 16px;
-    overflow: hidden;
-    text-decoration: none;
-    cursor: pointer;
-    background: linear-gradient(145deg, #1a1a1a, #0b0b0b);
-    border: 1px solid #2b2b2b;
-    transition: .4s;
-}
-
-.genre-card img, .genre-placeholder {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-}
-
-.genre-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
     color: #d4af37;
-    letter-spacing: .5px;
+    margin-bottom: 8px;
 }
 
-.genre-card:hover {
-    transform: translateY(-5px);
+.home-search-sub {
+    font-size: 15px;
+    color: #cfcfcf;
+    margin-bottom: 30px;
+}
+
+/* FORM */
+.home-search-form {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* INPUT */
+.home-search-input {
+    flex: 1;
+    max-width: 420px;
+    padding: 12px 16px;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.home-search-input::placeholder {
+    color: #777;
+}
+
+.home-search-input:focus {
+    outline: none;
     border-color: #d4af37;
 }
 
-.genre-name {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: #fff;
-    font-weight: bold;
-    text-shadow: 1px 1px 5px #000;
+/* BUTTON */
+.home-search-btn {
+    padding: 12px 22px;
+    background: #d4af37;
+    color: #0A0A0A;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.home-search-btn:hover {
+    background: #c6a85e;
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+    .home-search-form {
+        flex-direction: column;
+    }
+
+    .home-search-input {
+        max-width: 100%;
+    }
 }
 
 
+/* ==================================================
+   HOME – GENRES (UBR)
+   ================================================== */
 
-/* ---------------------------------------------------
-   NEWS
---------------------------------------------------- */
-.news-grid {
+.home-genres {
+    padding: 80px 8%;
+    background: #0A0A0A;
+    border-top: 1px solid #1f1f1f;
+    border-bottom: 1px solid #1f1f1f;
+}
+
+.home-genres-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* TITRE */
+.home-genres-title {
+    font-size: 28px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #d4af37;
+    margin-bottom: 8px;
+}
+
+.home-genres-sub {
+    font-size: 14px;
+    color: #bdbdbd;
+    margin-bottom: 40px;
+}
+
+/* GRID */
+.home-genres-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 18px;
+}
+
+/* CARD */
+.home-genre-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 10px;
+    padding: 18px;
+
+    transition: border-color 0.25s ease;
+}
+
+/* léger effet seulement */
+.home-genre-card:hover {
+    border-color: #d4af37;
+}
+
+/* IMAGE */
+.home-genre-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+/* PLACEHOLDER (lettre) */
+.home-genre-placeholder {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #151515;
+    color: #d4af37;
+    font-size: 34px;
+    font-weight: 800;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+/* NOM */
+.home-genre-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* EMPTY */
+.home-genres-empty {
+    grid-column: 1 / -1;
+    color: #aaa;
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+    .home-genres-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==============================
+   HOME NEWS - MAGAZINE STYLE
+============================== */
+
+.home-news {
+    padding: 80px 8%;
+    background: #f1eeee;
+    color: #0A0A0A;
+}
+
+/* header */
+.home-news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.home-news-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 6px;
+}
+
+.home-news-link {
+    color: #d4af37;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* layout */
+.home-news-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     gap: 25px;
 }
 
-.news-card {
-    background: var(--white);
-    border: 1px solid var(--gold);
-    border-radius: 10px;
-    padding: 15px;
-    transition: 0.3s ease;
+/* MAIN ARTICLE */
+.home-news-main {
+    position: relative;
+    display: block;
+    border-radius: 14px;
+    overflow: hidden;
 }
 
-.news-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
-}
-
-.news-card img {
+.home-news-main img {
     width: 100%;
-    height: 180px;
+    height: 380px;
+    object-fit: cover;
+    filter: brightness(70%);
+}
+
+.home-news-main-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.home-news-main h3 {
+    font-size: 22px;
+    color: #fff;
+}
+
+/* SIDE LIST */
+.home-news-side {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.home-news-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: #151515;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.home-news-item img {
+    width: 80px;
+    height: 60px;
     object-fit: cover;
     border-radius: 6px;
 }
 
-/* CTA Voir toutes les actualités */
-.news-cta {
-    text-align: center;
-    margin-top: 40px;
-}
-
-/* ---------------------------------------------------
-   FOOTER
---------------------------------------------------- */
-footer {
-    background: var(--white);
-    padding: 40px 0;
-    text-align: center;
-    border-top: 1px solid var(--gold);
-}
-
-/* Social + Liens */
-.footer-container {
-    max-width: 850px;
-    margin: 0 auto;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 25px;
-}
-
-.footer-links a,
-.footer-social a {
-    color: var(--gold);
-    text-decoration: none;
-    font-size: 15px;
-    transition: 0.3s ease;
-}
-
-.footer-links a:hover,
-.footer-social a:hover {
-    color: #0A0A0A;
-}
-
-.footer-social {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin-bottom: 25px;
-}
-
-.footer-copy {
+.home-news-item span {
     font-size: 14px;
-    color: #0A0A0A;
+    color: #fff;
 }
 
-/* ---------------------------------------------------
-   RESPONSIVE
---------------------------------------------------- */
-@media(max-width: 768px) {
-    .navbar ul {
-        gap: 15px;
+/* empty */
+.home-news-empty {
+    text-align: center;
+    opacity: .7;
+}
+
+/* responsive */
+@media(max-width: 900px){
+    .home-news-layout {
+        grid-template-columns: 1fr;
     }
 
-    .hero h1 {
-        font-size: 38px;
-        white-space: normal;
+    .home-news-main img {
+        height: 250px;
     }
 }
 
-.search-form {
-        display: flex;
-        margin: 15px auto;
-        max-width: 500px;
-    }
-   
+
+
+
+
+

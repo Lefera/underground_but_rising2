@@ -29,22 +29,35 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // ✅ VALIDATION COMPLÈTE + CONDITIONS
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                'unique:' . User::class
+            ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'terms' => ['accepted'], // 🔒 OBLIGATOIRE
         ]);
 
+        // ✅ CRÉATION UTILISATEUR
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
+        // ✅ ÉVÉNEMENT LARAVEL
         event(new Registered($user));
 
+        // ✅ CONNEXION AUTOMATIQUE
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // ✅ REDIRECTION
+        return redirect()->route('home');
     }
 }

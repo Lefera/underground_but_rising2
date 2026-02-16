@@ -1,0 +1,156 @@
+/* =====================================================
+   LEGAL PAGES – Underground But Rising
+   Style professionnel commun :
+   - Mentions légales
+   - Politique de confidentialité
+   - Conditions d'utilisation
+===================================================== */
+
+/* ===== Wrapper général ===== */
+.legal-page {
+    padding: 120px 20px 80px;
+    background: #f7f7f7;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* ===== Carte centrale ===== */
+.legal-container {
+    background: #ffffff;
+    max-width: 900px;
+    width: 100%;
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.06);
+    border: 1px solid #ececec;
+}
+
+
+/* ===== Titre principal ===== */
+.legal-title {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #111;
+    position: relative;
+}
+
+/* petite ligne or élégante */
+.legal-title::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 2px;
+    background: #d4af37;
+    margin: 14px auto 0;
+}
+
+
+/* ===== Intro ===== */
+.legal-intro {
+    text-align: center;
+    color: #555;
+    font-size: 15px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+}
+
+
+/* ===== Titres sections ===== */
+.legal-container h2 {
+    font-size: 18px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    color: #000;
+    font-weight: 600;
+}
+
+
+/* ===== Paragraphes ===== */
+.legal-container p {
+    color: #444;
+    font-size: 14.5px;
+    line-height: 1.75;
+    margin-bottom: 15px;
+}
+
+
+/* ===== Listes ===== */
+.legal-container ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.legal-container li {
+    font-size: 14.5px;
+    color: #444;
+    margin-bottom: 6px;
+}
+
+
+/* ===== Liens ===== */
+.legal-container a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.legal-container a:hover {
+    text-decoration: underline;
+}
+
+
+/* ===== Bouton retour/continuer ===== */
+.legal-btn {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 10px 22px;
+    background: #d4af37;
+    color: #000;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.legal-btn:hover {
+    opacity: 0.9;
+}
+
+
+/* ===== Checkbox consentement ===== */
+.legal-consent {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.legal-consent input {
+    margin-right: 6px;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+
+    .legal-container {
+        padding: 35px 22px;
+    }
+
+    .legal-title {
+        font-size: 24px;
+    }
+
+    .legal-container h2 {
+        font-size: 16px;
+    }
+}

@@ -14,15 +14,16 @@
         Nouveau message reçu depuis le site Underground But Rising
     </h2>
 
-    <p><strong>Nom :</strong> {{ $data->name }}</p>
-    <p><strong>Email :</strong> {{ $data->email }}</p>
+   <p><strong>Nom :</strong> {{ $contact->name }}</p>
+<p><strong>Email :</strong> {{ $contact->email }}</p>
 
-    @if(!empty($data->subject))
-        <p><strong>Sujet :</strong> {{ $data->subject }}</p>
-    @endif
+@if($contact->subject)
+    <p><strong>Sujet :</strong> {{ $contact->subject }}</p>
+@endif
 
-    <p><strong>Message :</strong></p>
-    <p>{!! nl2br(e($data->message)) !!}</p>
+<p><strong>Message :</strong></p>
+<p>{{ $contact->message }}</p>
+
 
     <br><hr>
 

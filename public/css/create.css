@@ -1,0 +1,224 @@
+/* ======================================================
+   DARK THEME – UNDERGROUND BUT RISING
+   Palette :
+   bg-main   #111111
+   card      #1a1a1a
+   surface   #222222
+   border    #2c2c2c
+   text      #e5e5e5
+   accent    #C6A85E
+====================================================== */
+
+
+/* ========= LAYOUT ========= */
+
+.artist-create {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+
+    background: #111111;
+}
+
+
+/* ========= CARD ========= */
+
+.artist-create__card {
+    width: 100%;
+    max-width: 760px;
+
+    background: #1a1a1a;
+    border-radius: 18px;
+    padding: 50px;
+
+    border: 1px solid #2c2c2c;
+
+  
+}
+
+
+/* ========= HEADER ========= */
+
+.artist-create__header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.artist-create__header i {
+    font-size: 22px;
+    color: #C6A85E;
+}
+
+.artist-create__header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+
+/* ========= FORM GRID ========= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-field--full {
+    grid-column: span 2;
+}
+
+
+/* ========= LABEL ========= */
+
+.form-field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #a1a1a1;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+}
+
+
+/* ========= INPUTS ========= */
+
+.form-field input,
+.form-field textarea {
+    padding: 14px 16px;
+
+    background: #222222;
+    border: 1px solid #2c2c2c;
+    border-radius: 10px;
+
+    color: #e5e5e5;
+    font-size: 14px;
+
+    transition: all .25s ease;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: #666;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    border-color: #C6A85E;
+    background: #1f1f1f;
+
+    box-shadow: 0 0 0 3px rgba(198,168,94,.25);
+}
+
+
+/* ========= UPLOAD ========= */
+
+.preview-img {
+    display: none;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    margin-top: 12px;
+
+    border: 3px solid #C6A85E;
+}
+
+
+/* ========= BUTTONS ========= */
+
+.form-actions {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn {
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: .25s;
+    
+}
+
+
+/* bouton principal or */
+
+.btn-primary {
+    background: #C6A85E;
+    color: #111;
+}
+
+.btn-primary:hover {
+    background: #d7bb75;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(198,168,94,.35);
+}
+
+
+/* bouton secondaire */
+
+.btn-light {
+    background: #2c2c2c;
+    color: #d1d1d1;
+    border: 1px solid #3a3a3a;
+}
+
+.btn-light:hover {
+    background: #343434;
+}
+
+.btn-back{
+    width: 150px;
+}
+/* ========= ALERT ========= */
+
+.form-alert {
+    background: #2a1212;
+    border-left: 4px solid #ef4444;
+    color: #ffb4b4;
+
+    padding: 14px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.form-alert ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+/* ========= MOBILE ========= */
+
+@media(max-width: 768px){
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-field--full {
+        grid-column: span 1;
+    }
+
+    .artist-create__card {
+        padding: 28px;
+    }
+}
+

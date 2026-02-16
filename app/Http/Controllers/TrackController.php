@@ -10,11 +10,17 @@ use Illuminate\Support\Str;
 
 class TrackController extends Controller
 {
+    /**
+     * Formulaire création track
+     */
     public function create(Artist $artist)
     {
         return view('tracks.create', compact('artist'));
     }
 
+    /**
+     * Enregistrer un nouveau track
+     */
     public function store(Request $request, Artist $artist)
     {
         $request->validate([
@@ -24,20 +30,36 @@ class TrackController extends Controller
         ]);
 
         $track = new Track();
+
         $track->artist_id = $artist->id;
         $track->title = $request->title;
         $track->youtube_link = $request->youtube_link;
 
-        // Upload audio si un fichier a été envoyé
+        /*
+        |--------------------------------------------------------------------------
+        | Upload audio
+        |--------------------------------------------------------------------------
+        */
         if ($request->hasFile('audio_file')) {
-            $filename = time() . '_' . Str::random(10) . '.' . $request->audio_file->extension();
-            $path = $request->audio_file->storeAs('audios', $filename, 'public');
+
+            $file = $request->file('audio_file');
+
+            $filename = time().'_'.Str::random(10).'.'.$file->extension();
+
+            $path = $file->storeAs('audios', $filename, 'public');
+
             $track->audio_file = $path;
         }
 
         $track->save();
 
-        return redirect()->route('artists.show', $artist->id)
-                         ->with('success', 'Track ajouté avec succès.');
+        /*
+        |--------------------------------------------------------------------------
+        | Redirection propre via SLUG automatique
+        |--------------------------------------------------------------------------
+        */
+        return redirect()
+            ->route('artists.show', $artist) // slug auto
+            ->with('success', 'Track ajouté avec succès.');
     }
 }

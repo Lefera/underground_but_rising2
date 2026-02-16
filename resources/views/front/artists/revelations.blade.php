@@ -3,126 +3,116 @@
 @section('title', 'Révélations')
 
 @section('content')
-<section class="revelation-page">
 
-    <h1 class="page-title">Révélations – Top 10 Rising Stars</h1>
-    <p class="subtitle">
-        Les artistes qui montent, repérés grâce à vos abonnements.
-    </p>
+<link rel="stylesheet" href="{{ asset('css/revelations.css') }}">
 
-    {{-- FILTRE GENRE --}}
-    <form method="GET" action="{{ route('revelations') }}" class="genre-filter">
-        <select name="genre" onchange="this.form.submit()">
-            <option value="">Tous les genres</option>
-            @foreach($genres as $g)
-                <option value="{{ $g->id }}" {{ $genre == $g->id ? 'selected' : '' }}>
-                    {{ $g->name }}
-                </option>
-            @endforeach
-        </select>
-    </form>
+<section class="rev-page">
 
-    {{-- RISING STARS ( +100 abonnés ) --}}
-    <div class="artists-grid">
-        @if($artists->count() > 0)
-            @foreach($artists as $artist)
-                <div class="artist-card">
+    <h1 class="rev-title">Révélations</h1>
+    <p class="rev-sub">Artistes en pleine ascension</p>
 
-                    {{-- Classement (#1, #2, ...) --}}
-                    <span class="rank">#{{ $loop->iteration }}</span>
 
-                    {{-- Photo --}}
-                    <img src="{{ Storage::url('artists/' .$artist->photo) }}" alt="{{ $artist->name }}">
+    {{-- ========================
+        FILTRE GENRES
+    ========================= --}}
+    <div class="genre-buttons">
 
-                    {{-- Nom --}}
-                    <h3>{{ $artist->name }}</h3>
+        <a href="{{ route('revelations') }}"
+           class="genre-btn {{ empty($genreId) ? 'active' : '' }}">
+            Tous
+        </a>
 
-                    {{-- Badge Rising --}}
-                    @if($artist->followers_count > 100)
-                        <span class="badge-rising">Rising Star</span>
-                    @endif
+        @foreach($genres as $g)
+            <a href="{{ route('revelations', ['genre' => $g->id]) }}"
+               class="genre-btn {{ (int)$genreId === $g->id ? 'active' : '' }}">
+                {{ $g->name }}
+            </a>
+        @endforeach
 
-                    {{-- Followers --}}
-                    <p class="followers-count" id="followers-{{ $artist->id }}">
-                        {{ $artist->followers_count }} abonnés
-                    </p>
-
-                    {{-- Bouton s'abonner --}}
-                    <button class="btn-small subscribe-btn" data-id="{{ $artist->id }}">
-                        S’abonner
-                    </button>
-
-                    {{-- Voir profil --}}
-                    <a href="{{ route('artists.show', $artist->slug) }}" class="btn-small">
-                        Voir le profil
-                    </a>
-
-                </div>
-            @endforeach
-        @else
-            <p class="empty-text">Pas encore de stars détectées.</p>
-        @endif
     </div>
 
-    <hr class="divider">
 
-    {{-- NOUVEAUX TALENTS --}}
-    <h2 class="section-title">Nouveaux talents</h2>
-    <p class="subtitle">Artistes avec 0–20 abonnés</p>
 
-    <div class="artists-grid small-grid">
-        @forelse($newTalents as $artist)
-            <div class="artist-card small">
-                <img src="{{ Storage::url($artist->photo) }}" alt="{{ $artist->name }}">
-                <h4>{{ $artist->name }}</h4>
-                <p class="followers-count">{{ $artist->followers_count }} abonnés</p>
-                <a href="{{ route('artists.show', $artist->slug) }}" class="btn-small">
-                    Voir le profil
+    {{-- ========================
+        TOP RÉVÉLATIONS
+    ========================= --}}
+    <h2 class="rev-section">Top Révélations</h2>
+
+    <div class="artists-list">
+        @forelse($artists as $artist)
+
+            <div class="artist-line">
+
+                <span class="rank">#{{ $loop->iteration }}</span>
+
+                {{-- MINI PHOTO --}}
+                <img
+                    class="artist-avatar"
+                    src="{{ $artist->photo ? Storage::url('artists/'.$artist->photo) : asset('images/avatar.png') }}"
+                    alt="{{ $artist->name }}"
+                >
+
+                <span class="name">{{ $artist->name }}</span>
+
+                @if($artist->badge_label)
+                    <span class="{{ $artist->badge_class }}">
+                        {{ $artist->badge_label }}
+                    </span>
+                @endif
+
+                <span class="followers">
+                    {{ $artist->followers_count }} abonnés
+                </span>
+
+                <a href="{{ route('artists.show', $artist->slug) }}" class="view-link">
+                    Voir
                 </a>
             </div>
+
+        @empty
+            <p class="empty-text">Aucune révélation pour le moment.</p>
+        @endforelse
+    </div>
+
+
+
+    {{-- ========================
+        NOUVEAUX TALENTS
+    ========================= --}}
+    <h2 class="rev-section">Nouveaux talents</h2>
+
+    <div class="artists-list">
+        @forelse($newTalents as $artist)
+
+            <div class="artist-line small">
+
+                <img
+                    class="artist-avatar small-avatar"
+                    src="{{ $artist->photo ? Storage::url('artists/'.$artist->photo) : asset('images/avatar.png') }}"
+                    alt="{{ $artist->name }}"
+                >
+
+                <span class="name">{{ $artist->name }}</span>
+
+                @if($artist->badge_label)
+                    <span class="{{ $artist->badge_class }}">
+                        {{ $artist->badge_label }}
+                    </span>
+                @endif
+
+                <span class="followers">
+                    {{ $artist->followers_count }} abonnés
+                </span>
+
+                <a href="{{ route('artists.show', $artist->slug) }}" class="view-link">
+                    Voir
+                </a>
+            </div>
+
         @empty
             <p class="empty-text">Aucun nouveau talent pour le moment.</p>
         @endforelse
     </div>
 
 </section>
-@endsection
-
-@section('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.subscribe-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const artistId = this.dataset.id;
-
-            fetch(`/artists/${artistId}/follow`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                const counter = document.getElementById(`followers-${artistId}`);
-                counter.textContent = data.followers + ' abonnés';
-
-                if (data.followers > 100) {
-                    let card = btn.closest('.artist-card');
-                    if (!card.querySelector('.badge-rising')) {
-                        let badge = document.createElement('span');
-                        badge.className = 'badge-rising';
-                        badge.innerText = 'Rising Star';
-                        card.insertBefore(badge, counter);
-                    }
-                }
-
-                btn.innerText = 'Abonné';
-                btn.disabled = true;
-            })
-            .catch(err => console.error(err));
-        });
-    });
-});
-</script>
 @endsection

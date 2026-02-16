@@ -1,52 +1,129 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('layouts.app')
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+@section('title', 'Inscription')
+
+@section('content')
+
+<section class="auth-full"
+    style="background-image: url('{{ asset('storage/artists/Tazo2.jpg') }}');">
+
+    {{-- COLONNE GAUCHE VISUEL --}}
+    <div class="auth-visual">
+        <div class="auth-visual-content">
+            <h1>Underground<br>But Rising</h1>
+            <p>La plateforme qui révèle les artistes de demain.</p>
+
+            <a href="{{ route('home') }}" class="visual-home">
+                ← Retour à l’accueil
+            </a>
         </div>
+    </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+    {{-- COLONNE DROITE FORM --}}
+    <div class="auth-panel">
+        <div class="auth-box">
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+            {{-- LOGO --}}
+            <a href="{{ route('home') }}" class="auth-logo">
+                <img src="{{ asset('storage/artists/LOGOF6.jpg') }}" alt="Logo">
             </a>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+            <h2 class="auth-title">Créer un compte</h2>
+
+            <form method="POST" action="{{ route('register') }}" class="auth-form">
+                @csrf
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Nom complet"
+                    required
+                    value="{{ old('name') }}"
+                >
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Adresse e-mail"
+                    required
+                    value="{{ old('email') }}"
+                >
+
+                {{-- MOT DE PASSE --}}
+                <div class="password-field">
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Mot de passe"
+                        required
+                    >
+                    <span class="toggle-password">
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+                </div>
+
+                {{-- CONFIRMATION --}}
+                <div class="password-field">
+                    <input
+                        type="password"
+                        name="password_confirmation"
+                        placeholder="Confirmer le mot de passe"
+                        required
+                    >
+                    <span class="toggle-password">
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+                </div>
+
+                {{-- CONDITIONS --}}
+                <label class="terms">
+                    <input type="checkbox" name="terms" required>
+                    <span>
+                        J’accepte les
+                        <a href="{{ route('legal.terms') }}" target="_blank">conditions</a>
+                        et la
+                        <a href="{{ route('legal.privacy') }}" target="_blank">politique de confidentialité</a>
+                    </span>
+                </label>
+
+                <button type="submit" class="btn-gold">
+                    S’inscrire
+                </button>
+            </form>
+
+            <p class="auth-footer">
+                Déjà inscrit ?
+                <a href="{{ route('login') }}">Connexion</a>
+            </p>
+
         </div>
-    </form>
-</x-guest-layout>
+    </div>
+
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.querySelectorAll('.toggle-password').forEach(toggle => {
+
+        toggle.addEventListener('click', function () {
+
+            const input = this.parentElement.querySelector('input');
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                this.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+            } else {
+                input.type = 'password';
+                this.innerHTML = '<i class="fa-solid fa-eye"></i>';
+            }
+
+        });
+
+    });
+
+});
+</script>
+
+</section>
+
+@endsection
